@@ -1,22 +1,1306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dhyan Cabs — safe, reliable and comfortable cab service in Ahmedabad. One way, round trip, rental and airport transfers across Gujarat.">
-    <meta name="keywords" content="Dhyan Cabs, Ahmedabad cab service, outstation taxi Gujarat, airport cab Ahmedabad, Ahmedabad to Surat cab, Ahmedabad to Vadodara taxi, Ahmedabad to Rajkot taxi, Ahmedabad to Mumbai cab, Ahmedabad to Bhavnagar taxi, Innova Crysta rental, Swift Dzire taxi">
-    <meta name="theme-color" content="#05070f">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Dhyan Cabs — safe, reliable and comfortable cab service in Ahmedabad. One way, round trip, rental and airport transfers across Gujarat.">
+<meta name="keywords" content="Dhyan Cabs, Ahmedabad cab service, outstation taxi Gujarat, airport cab Ahmedabad, Ahmedabad to Surat cab, Ahmedabad to Vadodara taxi, Ahmedabad to Rajkot taxi, Ahmedabad to Mumbai cab, Ahmedabad to Bhavnagar taxi, Innova Crysta rental, Swift Dzire taxi">
+<meta name="theme-color" content="#05070f">
 
-    <title>Dhyan Cabs | Safe, Reliable Cab Service in Ahmedabad</title>
+<title>Dhyan Cabs | Safe, Reliable Cab Service in Ahmedabad</title>
 
-    <link rel="icon" type="image/webp" href="DHYAN CAB LOGO 3.webp">
-    <link rel="apple-touch-icon" href="DHYAN CAB LOGO 3.webp">
+<link rel="icon" type="image/webp" href="DHYAN CAB LOGO 3.webp">
+<link rel="apple-touch-icon" href="DHYAN CAB LOGO 3.webp">
 
-    <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #061126;
+    --bg2: #0b1832;
+    --card: #14264b;
+    --card-line: #263d66;
+    --gold: #f5a623;
+    --gold-light: #ffcf7a;
+    --text: #a5b1c8;
+    --text-dim: #7c89a3;
+    --white: #f4f7ff;
+    --radius: 16px;
+    --header-h: 74px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .brand, nav a, .gold-btn, .dark-btn, .confirm,
+.eyebrow, .tab, .phone-btn, .journey-btn, .car-card a, .route-card a {
+    font-family: "Plus Jakarta Sans", "Poppins", Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button, input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+section[id], main#home {
+    scroll-margin-top: var(--header-h);
+}
+
+:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+::selection {
+    background: var(--gold);
+    color: #111;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    height: var(--header-h);
+    background: rgba(5, 13, 32, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,.09);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-wrap {
+    height: 100%;
+    width: 94%;
+    max-width: 1220px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: auto;
+}
+
+.brand-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: var(--white);
+}
+
+.brand strong {
+    display: block;
+    font-size: 15px;
+    letter-spacing: .5px;
+}
+
+.brand small {
+    display: block;
+    color: var(--gold);
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    gap: 27px;
+    align-items: center;
+}
+
+nav a {
+    position: relative;
+    color: #c3cad9;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 0;
+    transition: color .2s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width .25s ease;
+}
+
+nav a:hover {
+    color: var(--gold-light);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.phone-btn {
+    background: var(--gold);
+    color: #111;
+
+    padding: 9px 19px;
+    border-radius: 25px;
+
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.phone-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(245,166,35,.35);
+}
+
+.menu {
+    display: none;
+
+    background: transparent;
+    color: white;
+
+    border: 1px solid #263653;
+
+    padding: 7px 11px;
+    border-radius: 8px;
+    font-size: 18px;
+    line-height: 1;
+    transition: border-color .2s ease, color .2s ease;
+}
+
+.menu:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 610px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4,12,28,.95),
+            rgba(4,12,28,.7),
+            rgba(4,12,28,.35)
+        ),
+        url("https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=1800&q=90")
+        center/cover;
+}
+
+.hero-content {
+    width: 94%;
+    max-width: 1220px;
+    margin: auto;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -1px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    max-width: 600px;
+    color: var(--text);
+    margin: 18px 0;
+    font-size: 15px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.gold-btn,
+.dark-btn {
+    padding: 13px 23px;
+    border-radius: 8px;
+
+    font-weight: 700;
+    font-size: 13px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.gold-btn {
+    background: var(--gold);
+    color: #111;
+}
+
+.gold-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(245,166,35,.3);
+}
+
+.dark-btn {
+    border: 1px solid #596783;
+    background: rgba(255,255,255,.02);
+}
+
+.dark-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   BOOKING
+========================================================= */
+
+.booking {
+    max-width: 1220px;
+    width: 94%;
+
+    margin: -100px auto 0;
+
+    position: relative;
+    z-index: 5;
+}
+
+.booking-card {
+    background: linear-gradient(
+        145deg,
+        #172b53,
+        #102243
+    );
+
+    border: 1px solid #2a416d;
+    border-radius: 20px;
+
+    padding: 28px;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,.4);
+}
+
+.tabs {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+
+    border-bottom: 1px solid #2a3d60;
+
+    margin-bottom: 22px;
+}
+
+.tab {
+    border: 0;
+    background: transparent;
+
+    color: #93a0b8;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: nowrap;
+
+    padding: 12px 18px;
+    transition: color .2s ease;
+}
+
+.tab:hover {
+    color: var(--gold-light);
+}
+
+.tab.active {
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        1.3fr
+        1.3fr
+        1fr
+        1fr
+        1fr;
+
+    gap: 14px;
+}
+
+label {
+    font-size: 10px;
+    color: #8997b0;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+input {
+    display: block;
+    width: 100%;
+
+    margin-top: 7px;
+
+    background: #1b315c;
+    border: 1px solid #30466e;
+
+    color: white;
+
+    padding: 12px 13px;
+    border-radius: 9px;
+
+    outline: none;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+input::placeholder {
+    color: #64749a;
+}
+
+input:focus {
+    border-color: var(--gold);
+    background: #1e386b;
+}
+
+.confirm {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 14px;
+
+    background: var(--gold);
+    color: #111;
+
+    border: 0;
+    border-radius: 9px;
+
+    font-weight: 700;
+    font-size: 14px;
+
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.confirm:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(245,166,35,.3);
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 70px;
+
+    padding: 42px 10px 10px;
+}
+
+.stats div {
+    text-align: center;
+}
+
+.stats b {
+    display: block;
+
+    color: var(--gold);
+    font-weight: 800;
+
+    font-size: 26px;
+}
+
+.stats span {
+    display: block;
+
+    color: #75829a;
+
+    font-size: 10px;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.section {
+    padding: 90px 3%;
+
+    max-width: 1280px;
+
+    margin: auto;
+}
+
+.services-dark,
+.routes {
+    max-width: none;
+
+    background: #061126;
+}
+
+.heading {
+    text-align: center;
+
+    max-width: 720px;
+
+    margin: 0 auto 45px;
+}
+
+.heading h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+}
+
+.heading p {
+    color: #78869e;
+
+    font-size: 13.5px;
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.service-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 22px;
+
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+.service-card {
+    background: var(--card);
+
+    border: 1px solid var(--card-line);
+
+    border-radius: 17px;
+
+    overflow: hidden;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 35px rgba(0,0,0,.3);
+}
+
+.service-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100px;
+
+    font-size: 34px;
+
+    background: linear-gradient(145deg, #1a2f5c, #0f2044);
+    border-bottom: 1px solid var(--card-line);
+}
+
+.card-body {
+    padding: 22px 20px;
+}
+
+.card-body h3 {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.card-body p {
+    color: #8090aa;
+
+    font-size: 12.5px;
+
+    margin: 6px 0 0;
+}
+
+
+/* =========================================================
+   FLEET & RATES
+========================================================= */
+
+.journey-section {
+    padding: 90px 3%;
+    max-width: 1280px;
+    margin: auto;
+}
+
+.journey-heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 45px;
+}
+
+.journey-small {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.journey-heading h2 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.journey-heading p {
+    color: #78869e;
+    font-size: 13.5px;
+}
+
+.journey-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+
+    max-width: 1200px;
+    margin: auto;
+}
+
+.journey-card {
+    background: #0d1d3a;
+    border: 1px solid var(--card-line);
+    border-radius: 22px;
+    overflow: hidden;
+
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.journey-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 45px rgba(0,0,0,.35);
+}
+
+.journey-image {
+    height: 210px;
+    background: #0d1d3a;
+    overflow: hidden;
+}
+
+.journey-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.journey-card:hover .journey-image img {
+    transform: scale(1.06);
+}
+
+.journey-image-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 54px;
+    background: linear-gradient(145deg, #1a2f5c, #0f2044);
+}
+
+.journey-info {
+    padding: 24px;
+}
+
+.journey-info h3 {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.vehicle-details {
+    display: flex;
+    gap: 16px;
+    color: var(--text);
+    font-size: 12.5px;
+    margin-bottom: 18px;
+}
+
+.rate-box {
+    background: #102344;
+    border: 1px solid #263d61;
+    border-radius: 14px;
+    padding: 16px 18px;
+}
+
+.rate-box small {
+    display: block;
+    color: #7890b4;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+}
+
+.rate-box > div {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+}
+
+.rate-box span {
+    color: var(--gold);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.rate-box strong {
+    color: var(--gold);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.rate-box em {
+    color: var(--text);
+    font-size: 13px;
+    font-style: normal;
+    margin-left: 2px;
+}
+
+.feature-line {
+    height: 1px;
+    background: var(--card-line);
+    margin: 18px 0;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-bottom: 20px;
+}
+
+.features span {
+    color: #c7d0e2;
+    font-size: 12px;
+}
+
+.journey-btn {
+    display: block;
+    text-align: center;
+
+    padding: 12px;
+
+    background: #242e43;
+    border: 1px solid #4a556b;
+    border-radius: 9px;
+
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.journey-btn:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #111;
+}
+
+
+/* =========================================================
+   ROUTES & PRICING
+========================================================= */
+
+.route-grid {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+    gap: 20px;
+
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+.route-card {
+    background: var(--card);
+
+    border: 1px solid #2a416c;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.route-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 35px rgba(0,0,0,.3);
+}
+
+.route-img {
+    width: 100%;
+    height: 185px;
+
+    object-fit: cover;
+}
+
+.route-card > div:last-child {
+    padding: 16px;
+}
+
+.route-card h3 {
+    font-size: 14.5px;
+    font-weight: 700;
+}
+
+.route-card p {
+    font-size: 11.5px;
+
+    color: #c1c9d8;
+
+    margin: 8px 0;
+}
+
+.route-card b {
+    color: var(--gold);
+}
+
+.route-card a {
+    display: block;
+
+    text-align: center;
+
+    background: #242e43;
+
+    border: 1px solid #4a556b;
+
+    color: var(--gold);
+
+    padding: 9px;
+
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.route-card a:hover {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: #111;
+}
+
+
+/* =========================================================
+   REVIEWS
+========================================================= */
+
+.review-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    gap: 20px;
+
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+.review {
+    background: var(--card);
+
+    border: 1px solid var(--card-line);
+
+    padding: 26px;
+
+    border-radius: 15px;
+    transition: transform .25s ease, border-color .25s ease;
+}
+
+.review:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+}
+
+.review > b {
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.review p {
+    color: #9aa7bb;
+
+    font-size: 13px;
+
+    margin: 14px 0;
+}
+
+.review strong {
+    font-weight: 700;
+}
+
+.review small {
+    display: block;
+
+    color: #73819a;
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   FAQ
+========================================================= */
+
+.faq-list {
+    max-width: 850px;
+
+    margin: auto;
+}
+
+.faq-item {
+    border: 1px solid #253a61;
+
+    background: #101f3d;
+
+    margin-bottom: 10px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+    transition: border-color .2s ease;
+}
+
+.faq-item.open {
+    border-color: var(--gold);
+}
+
+.faq-item button {
+    width: 100%;
+
+    background: transparent;
+
+    border: 0;
+
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+
+    padding: 18px;
+
+    text-align: left;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.faq-item button span {
+    color: var(--gold);
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.faq-item p {
+    display: none;
+
+    color: #8794ab;
+
+    padding: 0 18px 18px;
+
+    font-size: 13px;
+}
+
+.faq-item.open p {
+    display: block;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about {
+    background: var(--bg2);
+
+    max-width: none;
+
+    text-align: center;
+}
+
+.about > div {
+    max-width: 700px;
+
+    margin: auto;
+}
+
+.about h2 {
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+    margin: 6px 0 12px;
+}
+
+.about p {
+    color: #8b98ad;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FLOATING BUTTONS
+========================================================= */
+
+.floating {
+    position: fixed;
+    right: 22px;
+
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,.4);
+    z-index: 900;
+    transition: transform .2s ease;
+}
+
+.floating:hover {
+    transform: scale(1.08);
+}
+
+.floating.whatsapp {
+    bottom: 90px;
+    background: #25d366;
+    color: #fff;
+}
+
+.floating.call {
+    bottom: 22px;
+    background: var(--gold);
+    color: #111;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    background: #050c1c;
+
+    border-top: 1px solid #1c2b47;
+}
+
+.footer-inner {
+    max-width: 1200px;
+
+    width: 94%;
+
+    margin: auto;
+
+    padding: 45px 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    justify-content: space-between;
+    align-items: center;
+
+    color: #8794ab;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--white);
+    object-fit: cover;
+}
+
+.footer-inner strong {
+    color: white;
+    font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.footer-brand p {
+    font-size: 12.5px;
+    margin-top: 3px;
+}
+
+.footer-contact {
+    text-align: right;
+    font-size: 13px;
+}
+
+.footer-contact p + p {
+    margin-top: 4px;
+}
+
+.copyright {
+    text-align: center;
+
+    border-top: 1px solid #18263f;
+
+    padding: 15px;
+
+    color: #65738c;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .journey-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    nav {
+        position: absolute;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+
+        background: #050d20;
+        border-bottom: 1px solid rgba(255,255,255,.09);
+
+        max-height: 0;
+        overflow: hidden;
+
+        transition: max-height .3s ease;
+    }
+
+    nav a {
+        width: 100%;
+        padding: 14px 6%;
+    }
+
+    nav a::after {
+        display: none;
+    }
+
+    .nav-wrap.nav-open nav {
+        max-height: 400px;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .phone-btn span {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .journey-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .route-img {
+        height: 170px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        gap: 30px 25px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero {
+        min-height: 560px;
+    }
+
+    .phone-btn {
+        padding: 9px 14px;
+    }
+
+    .footer-inner {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-contact {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking {
+        margin-top: -60px;
+    }
+
+    .booking-card {
+        padding: 18px;
+    }
+
+    .tab {
+        padding: 12px 14px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .heading h2,
+    .journey-heading h2 {
+        font-size: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: .001ms !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -42,11 +1326,11 @@
             <a href="#about">About</a>
         </nav>
 
-        <a class="phone-btn" href="tel:+919727729334">
-            <span aria-hidden="true">☎</span> 97272 29334
+        <a class="phone-btn" href="tel:+919920019194">
+            <span aria-hidden="true">☎</span> 99200 19194
         </a>
 
-        <button class="menu" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+        <button class="menu" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">☰</button>
 
     </div>
 </header>
@@ -201,7 +1485,7 @@
 </section>
 
 <!-- FLEET / RATES -->
-<section class="journey-section">
+<section class="journey-section" id="fleet">
 
     <div class="journey-heading">
         <div class="journey-small">OUR FLEET</div>
@@ -243,7 +1527,7 @@
                     <span>✓ 24×7 Available</span>
                 </div>
 
-                <a href="https://wa.me/919727729334" target="_blank" class="journey-btn">
+                <a href="https://wa.me/919920019194" target="_blank" class="journey-btn">
                     ☎ Book on WhatsApp
                 </a>
 
@@ -283,7 +1567,7 @@
                     <span>✓ Family Ideal</span>
                 </div>
 
-                <a href="https://wa.me/919727729334" target="_blank" class="journey-btn">
+                <a href="https://wa.me/919920019194" target="_blank" class="journey-btn">
                     ☎ Book on WhatsApp
                 </a>
 
@@ -323,55 +1607,13 @@
                     <span>✓ Long-Distance</span>
                 </div>
 
-                <a href="https://wa.me/919727729334" target="_blank" class="journey-btn">
+                <a href="https://wa.me/919920019194" target="_blank" class="journey-btn">
                     ☎ Book on WhatsApp
                 </a>
 
             </div>
 
         </div>
-
-    </div>
-
-</section>
-
-<section id="fleet" class="section">
-
-    <div class="heading">
-        <div class="eyebrow">OUR FLEET</div>
-        <h2>Available Vehicles</h2>
-        <p>Well-maintained, clean and comfortable vehicles for every type of journey.</p>
-    </div>
-
-    <div class="fleet-grid">
-
-        <article class="car-card">
-            <img src="DHYAN CAB SWIFT DZIRE.webp" alt="Dhyan Cabs Swift Dzire" loading="lazy">
-            <div>
-                <h3>Swift Dzire</h3>
-                <p>Comfortable sedan for up to 4 passengers.</p>
-                <span>👤 4 Persons &nbsp; • &nbsp; 🧳 3 Bags</span>
-            </div>
-        </article>
-
-        <article class="car-card">
-            <div class="car-card-placeholder" aria-hidden="true">🚙</div>
-            <div>
-                <h3>Maruti Ertiga</h3>
-                <p>Spacious family car for comfortable journeys.</p>
-                <span>👤 6 Persons &nbsp; • &nbsp; 🧳 4 Bags</span>
-            </div>
-        </article>
-
-        <article class="car-card">
-            <span class="popular">MOST POPULAR</span>
-            <img src="DHYAN CAB INNOVA CRYSTA.webp" alt="Dhyan Cabs Innova Crysta" loading="lazy">
-            <div>
-                <h3>Innova Crysta</h3>
-                <p>Premium comfort for family and group travel.</p>
-                <span>👤 6 Persons &nbsp; • &nbsp; 🧳 4 Bags</span>
-            </div>
-        </article>
 
     </div>
 
@@ -480,7 +1722,7 @@
     <div class="faq-list">
 
         <div class="faq-item">
-            <button onclick="faq(this)">
+            <button onclick="faq(this)" aria-expanded="false">
                 How can I book a cab?
                 <span>+</span>
             </button>
@@ -488,7 +1730,7 @@
         </div>
 
         <div class="faq-item">
-            <button onclick="faq(this)">
+            <button onclick="faq(this)" aria-expanded="false">
                 Do you provide outstation services?
                 <span>+</span>
             </button>
@@ -496,7 +1738,7 @@
         </div>
 
         <div class="faq-item">
-            <button onclick="faq(this)">
+            <button onclick="faq(this)" aria-expanded="false">
                 Do you provide airport pickup?
                 <span>+</span>
             </button>
@@ -519,8 +1761,8 @@
 
 </main>
 
-<a class="floating whatsapp" href="https://wa.me/919727729334" target="_blank" aria-label="Chat on WhatsApp">◉</a>
-<a class="floating call" href="tel:+919727729334" aria-label="Call Dhyan Cabs">☎</a>
+<a class="floating whatsapp" href="https://wa.me/919920019194" target="_blank" aria-label="Chat on WhatsApp">◉</a>
+<a class="floating call" href="tel:+919920019194" aria-label="Call Dhyan Cabs">☎</a>
 
 <footer>
 
@@ -536,7 +1778,7 @@
 
         <div class="footer-contact">
             <p>Ahmedabad, Gujarat, India</p>
-            <p>+91 97272 29334</p>
+            <p>+91 99200 19194</p>
         </div>
 
     </div>
@@ -545,7 +1787,393 @@
 
 </footer>
 
-<script src="script.js"></script>
+<script>
+// ========================================
+// DHYAN CAB - SCRIPT
+// ========================================
+
+
+// ========================================
+// MOBILE MENU
+// ========================================
+
+function toggleMenu() {
+
+    const navWrap = document.querySelector(".nav-wrap");
+    const menuBtn = document.querySelector(".menu");
+
+    if (navWrap) {
+        const isOpen = navWrap.classList.toggle("nav-open");
+        if (menuBtn) {
+            menuBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        }
+    }
+
+}
+
+
+// CLOSE MOBILE MENU AFTER CLICK
+
+document.querySelectorAll("nav a").forEach(function(link) {
+
+    link.addEventListener("click", function() {
+
+        const navWrap = document.querySelector(".nav-wrap");
+        const menuBtn = document.querySelector(".menu");
+
+        if (navWrap) {
+            navWrap.classList.remove("nav-open");
+        }
+        if (menuBtn) {
+            menuBtn.setAttribute("aria-expanded", "false");
+        }
+
+    });
+
+});
+
+
+// ========================================
+// BOOKING TABS
+// ========================================
+
+function setTab(button) {
+
+    document.querySelectorAll(".tab").forEach(function(tab) {
+
+        tab.classList.remove("active");
+
+    });
+
+    button.classList.add("active");
+
+}
+
+
+// ========================================
+// FAQ
+// ========================================
+
+function faq(button) {
+
+    const item = button.parentElement;
+
+    item.classList.toggle("open");
+
+    const isOpen = item.classList.contains("open");
+
+    button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+
+    const symbol = button.querySelector("span");
+
+    if (isOpen) {
+
+        symbol.textContent = "−";
+
+    } else {
+
+        symbol.textContent = "+";
+
+    }
+
+}
+
+
+// ========================================
+// BOOKING FORM
+// ========================================
+
+const form = document.getElementById("bookingForm");
+
+
+if (form) {
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        // GET FORM VALUES
+
+        const from =
+            document.getElementById("from").value.trim();
+
+
+        const to =
+            document.getElementById("to").value.trim();
+
+
+        const date =
+            document.getElementById("date").value;
+
+
+        const time =
+            document.getElementById("time").value;
+
+
+        const mobile =
+            document.getElementById("mobile").value.trim();
+
+
+        const activeTabElement =
+            document.querySelector(".tab.active");
+
+
+        const activeTab =
+            activeTabElement
+                ? activeTabElement.textContent.trim()
+                : "One Way";
+
+
+        // ========================================
+        // VALIDATION
+        // ========================================
+
+
+        // FROM
+
+        if (from === "") {
+
+            alert("Please enter pickup city.");
+
+            document.getElementById("from").focus();
+
+            return;
+
+        }
+
+
+        // TO
+
+        if (to === "") {
+
+            alert("Please enter destination city.");
+
+            document.getElementById("to").focus();
+
+            return;
+
+        }
+
+
+        // DATE
+
+        if (date === "") {
+
+            alert("Please select pickup date.");
+
+            document.getElementById("date").focus();
+
+            return;
+
+        }
+
+
+        // TIME
+
+        if (time === "") {
+
+            alert("Please select pickup time.");
+
+            document.getElementById("time").focus();
+
+            return;
+
+        }
+
+
+        // MOBILE
+
+        if (!/^[0-9]{10}$/.test(mobile)) {
+
+            alert("Please enter a valid 10-digit mobile number.");
+
+            document.getElementById("mobile").focus();
+
+            return;
+
+        }
+
+
+        // ========================================
+        // WHATSAPP MESSAGE
+        // ========================================
+
+        const message =
+
+            "DHYAN CAB BOOKING\n\n" +
+
+            "Booking Type: " +
+            activeTab +
+
+            "\nFrom: " +
+            from +
+
+            "\nTo: " +
+            to +
+
+            "\nPickup Date: " +
+            date +
+
+            "\nPickup Time: " +
+            time +
+
+            "\nCustomer Mobile: " +
+            mobile;
+
+
+        // ========================================
+        // WHATSAPP URL
+        // ========================================
+
+        const whatsappURL =
+
+            "https://wa.me/919920019194?text=" +
+
+            encodeURIComponent(message);
+
+
+        // OPEN WHATSAPP
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+
+    });
+
+}
+
+
+// ========================================
+// ONLY NUMBERS IN MOBILE NUMBER
+// ========================================
+
+const mobileInput =
+    document.getElementById("mobile");
+
+
+if (mobileInput) {
+
+    mobileInput.addEventListener(
+        "input",
+        function() {
+
+            this.value =
+                this.value
+                    .replace(/\D/g, "")
+                    .slice(0, 10);
+
+        }
+    );
+
+}
+
+
+// ========================================
+// PREVENT OLD BOOKING DATES
+// ========================================
+
+const dateInput =
+    document.getElementById("date");
+
+
+if (dateInput) {
+
+    const today =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    dateInput.setAttribute(
+        "min",
+        today
+    );
+
+}
+
+
+// ========================================
+// SMOOTH SCROLL
+// ========================================
+
+document.querySelectorAll(
+    'a[href^="#"]'
+).forEach(function(link) {
+
+    link.addEventListener(
+        "click",
+        function(event) {
+
+            const targetId =
+                this.getAttribute("href");
+
+
+            if (
+                targetId &&
+                targetId !== "#"
+            ) {
+
+                const target =
+                    document.querySelector(
+                        targetId
+                    );
+
+
+                if (target) {
+
+                    event.preventDefault();
+
+
+                    target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+
+            }
+
+        }
+    );
+
+});
+
+
+// ========================================
+// ESC KEY CLOSE MOBILE MENU
+// ========================================
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+
+            const navWrap =
+                document.querySelector(
+                    ".nav-wrap"
+                );
+
+
+            if (navWrap) {
+
+                navWrap.classList.remove(
+                    "nav-open"
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+console.log("DHYAN CAB website loaded successfully.");
+</script>
 
 </body>
 </html>
