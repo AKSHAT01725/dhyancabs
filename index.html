@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dhyan Cabs — safe, reliable and comfortable cab service in Ahmedabad. One way, round trip, rental and airport transfers across Gujarat.">
+    <meta name="keywords" content="Dhyan Cabs, Ahmedabad cab service, outstation taxi Gujarat, airport cab Ahmedabad, Ahmedabad to Surat cab, Ahmedabad to Vadodara taxi, Ahmedabad to Rajkot taxi, Ahmedabad to Mumbai cab, Ahmedabad to Bhavnagar taxi, Innova Crysta rental, Swift Dzire taxi">
+    <meta name="theme-color" content="#05070f">
+
+    <title>Dhyan Cabs | Safe, Reliable Cab Service in Ahmedabad</title>
+
+    <link rel="icon" type="image/webp" href="DHYAN CAB LOGO 3.webp">
+    <link rel="apple-touch-icon" href="DHYAN CAB LOGO 3.webp">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+    <div class="nav-wrap">
+
+        <a class="brand" href="#home">
+            <img class="brand-logo" src="DHYAN CAB LOGO 3.webp" alt="Dhyan Cabs logo">
+            <div>
+                <strong>DHYAN</strong>
+                <small>CABS</small>
+            </div>
+        </a>
+
+        <nav id="nav">
+            <a href="#services">Services</a>
+            <a href="#fleet">Fleet</a>
+            <a href="#routes">Routes</a>
+            <a href="#booking">Booking</a>
+            <a href="#faq">FAQ</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <a class="phone-btn" href="tel:+919727729334">
+            <span aria-hidden="true">☎</span> 97272 29334
+        </a>
+
+        <button class="menu" onclick="toggleMenu()" aria-label="Toggle menu">☰</button>
+
+    </div>
+</header>
+
+<main id="home">
+
+<section class="hero">
+    <div class="hero-content">
+
+        <div class="eyebrow">AHMEDABAD'S TRUSTED TRAVEL PARTNER</div>
+
+        <h1>
+            Comfort. Safety.<br>
+            <span>Always On Time.</span>
+        </h1>
+
+        <p>
+            Reliable cab services and outstation travel solutions
+            across Gujarat — professional drivers, clean vehicles,
+            transparent pricing.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#booking" class="gold-btn">Book Your Cab →</a>
+            <a href="#services" class="dark-btn">Explore Services</a>
+        </div>
+
+    </div>
+</section>
+
+<section id="booking" class="booking">
+
+    <div class="booking-card">
+
+        <div class="tabs">
+            <button class="tab active" onclick="setTab(this)">One Way</button>
+            <button class="tab" onclick="setTab(this)">Round Trip</button>
+            <button class="tab" onclick="setTab(this)">Rental</button>
+            <button class="tab" onclick="setTab(this)">Airport</button>
+        </div>
+
+        <form id="bookingForm">
+
+            <div class="form-grid">
+
+                <label>
+                    FROM
+                    <input id="from" required placeholder="Enter pickup city">
+                </label>
+
+                <label>
+                    TO
+                    <input id="to" required placeholder="Enter destination city">
+                </label>
+
+                <label>
+                    PICKUP DATE
+                    <input id="date" type="date" required>
+                </label>
+
+                <label>
+                    PICKUP TIME
+                    <input id="time" type="time" required>
+                </label>
+
+                <label>
+                    MOBILE NUMBER
+                    <input id="mobile" type="tel" maxlength="10" required placeholder="10-digit number">
+                </label>
+
+            </div>
+
+            <button class="confirm" type="submit">
+                <span aria-hidden="true">◉</span> &nbsp; Confirm Booking on WhatsApp
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="stats">
+
+        <div>
+            <b>100+</b>
+            <span>Happy Customers</span>
+        </div>
+
+        <div>
+            <b>4.9★</b>
+            <span>Google Rating</span>
+        </div>
+
+        <div>
+            <b>24×7</b>
+            <span>Available</span>
+        </div>
+
+        <div>
+            <b>50+</b>
+            <span>Gujarat Destinations</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SERVICES -->
+<section class="section services-dark" id="services">
+
+    <div class="heading">
+        <div class="eyebrow">WHAT WE OFFER</div>
+        <h2>Our Services</h2>
+        <p>From daily city rides to complete Gujarat tour packages — we've got every journey covered.</p>
+    </div>
+
+    <div class="service-grid">
+
+        <div class="service-card">
+            <div class="service-icon">🚕</div>
+            <div class="card-body">
+                <h3>Outstation Booking</h3>
+                <p>Comfortable, safe long-distance cab service to any destination across Gujarat and India.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🏢</div>
+            <div class="card-body">
+                <h3>Corporate Travel</h3>
+                <p>Dedicated professional travel solutions for businesses, teams and executives.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🗺️</div>
+            <div class="card-body">
+                <h3>Gujarat Tours</h3>
+                <p>Explore Gujarat's heritage, beaches and wildlife with premium rides and expert drivers.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🔄</div>
+            <div class="card-body">
+                <h3>One Way &amp; Round Trip</h3>
+                <p>Flexible booking options — pay according to the distance you travel, no hassle.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FLEET / RATES -->
+<section class="journey-section">
+
+    <div class="journey-heading">
+        <div class="journey-small">OUR FLEET</div>
+        <h2>Everything You Need for Your Journey</h2>
+        <p>Choose from our comfortable, reliable and well-maintained vehicles for every type of journey.</p>
+    </div>
+
+    <div class="journey-grid">
+
+        <!-- SWIFT DZIRE -->
+        <div class="journey-card">
+
+            <div class="journey-image">
+                <img src="DHYAN CAB SWIFT DZIRE.webp" alt="Dhyan Cabs Swift Dzire sedan" loading="lazy">
+            </div>
+
+            <div class="journey-info">
+
+                <h3>Swift Dzire</h3>
+
+                <div class="vehicle-details">
+                    <span>👤 4 Persons</span>
+                    <span>💼 3 Bags</span>
+                </div>
+
+                <div class="rate-box">
+                    <small>ROUND TRIP RATE</small>
+                    <div>
+                        <span>₹</span>
+                        <strong>11</strong>
+                        <em>/ km</em>
+                    </div>
+                </div>
+
+                <div class="feature-line"></div>
+
+                <div class="features">
+                    <span>✓ AC Comfort</span>
+                    <span>✓ 24×7 Available</span>
+                </div>
+
+                <a href="https://wa.me/919727729334" target="_blank" class="journey-btn">
+                    ☎ Book on WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- MARUTI ERTIGA (no photo yet — icon placeholder) -->
+        <div class="journey-card">
+
+            <div class="journey-image journey-image-placeholder">
+                <span aria-hidden="true">🚙</span>
+            </div>
+
+            <div class="journey-info">
+
+                <h3>Maruti Ertiga</h3>
+
+                <div class="vehicle-details">
+                    <span>👤 6 Persons</span>
+                    <span>💼 4 Bags</span>
+                </div>
+
+                <div class="rate-box">
+                    <small>ROUND TRIP RATE</small>
+                    <div>
+                        <span>₹</span>
+                        <strong>13</strong>
+                        <em>/ km</em>
+                    </div>
+                </div>
+
+                <div class="feature-line"></div>
+
+                <div class="features">
+                    <span>✓ Spacious Cabin</span>
+                    <span>✓ Family Ideal</span>
+                </div>
+
+                <a href="https://wa.me/919727729334" target="_blank" class="journey-btn">
+                    ☎ Book on WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- INNOVA CRYSTA -->
+        <div class="journey-card">
+
+            <div class="journey-image">
+                <img src="DHYAN CAB INNOVA CRYSTA.webp" alt="Dhyan Cabs Innova Crysta" loading="lazy">
+            </div>
+
+            <div class="journey-info">
+
+                <h3>Innova Crysta</h3>
+
+                <div class="vehicle-details">
+                    <span>👤 6 Persons</span>
+                    <span>💼 4 Bags</span>
+                </div>
+
+                <div class="rate-box">
+                    <small>ROUND TRIP RATE</small>
+                    <div>
+                        <span>₹</span>
+                        <strong>18</strong>
+                        <em>/ km</em>
+                    </div>
+                </div>
+
+                <div class="feature-line"></div>
+
+                <div class="features">
+                    <span>✓ Premium SUV</span>
+                    <span>✓ Long-Distance</span>
+                </div>
+
+                <a href="https://wa.me/919727729334" target="_blank" class="journey-btn">
+                    ☎ Book on WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="fleet" class="section">
+
+    <div class="heading">
+        <div class="eyebrow">OUR FLEET</div>
+        <h2>Available Vehicles</h2>
+        <p>Well-maintained, clean and comfortable vehicles for every type of journey.</p>
+    </div>
+
+    <div class="fleet-grid">
+
+        <article class="car-card">
+            <img src="DHYAN CAB SWIFT DZIRE.webp" alt="Dhyan Cabs Swift Dzire" loading="lazy">
+            <div>
+                <h3>Swift Dzire</h3>
+                <p>Comfortable sedan for up to 4 passengers.</p>
+                <span>👤 4 Persons &nbsp; • &nbsp; 🧳 3 Bags</span>
+            </div>
+        </article>
+
+        <article class="car-card">
+            <div class="car-card-placeholder" aria-hidden="true">🚙</div>
+            <div>
+                <h3>Maruti Ertiga</h3>
+                <p>Spacious family car for comfortable journeys.</p>
+                <span>👤 6 Persons &nbsp; • &nbsp; 🧳 4 Bags</span>
+            </div>
+        </article>
+
+        <article class="car-card">
+            <span class="popular">MOST POPULAR</span>
+            <img src="DHYAN CAB INNOVA CRYSTA.webp" alt="Dhyan Cabs Innova Crysta" loading="lazy">
+            <div>
+                <h3>Innova Crysta</h3>
+                <p>Premium comfort for family and group travel.</p>
+                <span>👤 6 Persons &nbsp; • &nbsp; 🧳 4 Bags</span>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+<section id="routes" class="section routes">
+
+    <div class="heading">
+        <div class="eyebrow">POPULAR ROUTES</div>
+        <h2>Route &amp; Pricing</h2>
+        <p>Transparent pricing — no surprises.</p>
+    </div>
+
+    <div class="route-grid">
+
+        <article class="route-card">
+            <img class="route-img" src="DHYAN CAB A V.webp" alt="Ahmedabad to Vadodara cab route" loading="lazy">
+            <div>
+                <h3>Ahmedabad To Vadodara</h3>
+                <p>Sedan: <b>₹1600</b> &nbsp; • &nbsp; SUV: <b>₹2300</b></p>
+                <a href="#booking">→ Book Now</a>
+            </div>
+        </article>
+
+        <article class="route-card">
+            <img class="route-img" src="DHYAN CAB A S.webp" alt="Ahmedabad to Surat cab route" loading="lazy">
+            <div>
+                <h3>Ahmedabad To Surat</h3>
+                <p>Sedan: <b>₹3200</b> &nbsp; • &nbsp; SUV: <b>₹3800</b></p>
+                <a href="#booking">→ Book Now</a>
+            </div>
+        </article>
+
+        <article class="route-card">
+            <img class="route-img" src="DHYAN CAB A R.webp" alt="Ahmedabad to Rajkot cab route" loading="lazy">
+            <div>
+                <h3>Ahmedabad To Rajkot</h3>
+                <p>Sedan: <b>₹2300</b> &nbsp; • &nbsp; SUV: <b>₹2800</b></p>
+                <a href="#booking">→ Book Now</a>
+            </div>
+        </article>
+
+        <article class="route-card">
+            <img class="route-img" src="DHYAN CAB A B.webp" alt="Ahmedabad to Bhavnagar cab route" loading="lazy">
+            <div>
+                <h3>Ahmedabad To Bhavnagar</h3>
+                <p>Sedan: <b>₹2500</b> &nbsp; • &nbsp; SUV: <b>₹3200</b></p>
+                <a href="#booking">→ Book Now</a>
+            </div>
+        </article>
+
+        <article class="route-card">
+            <img class="route-img" src="DHYAN CAB A M.webp" alt="Ahmedabad to Mumbai cab route" loading="lazy">
+            <div>
+                <h3>Ahmedabad To Mumbai</h3>
+                <p>Sedan: <b>₹6500</b> &nbsp; • &nbsp; SUV: <b>₹8500</b></p>
+                <a href="#booking">→ Book Now</a>
+            </div>
+        </article>
+
+    </div>
+
+</section>
+
+<section id="reviews" class="section">
+
+    <div class="heading">
+        <div class="eyebrow">CUSTOMER REVIEWS</div>
+        <h2>What Our Customers Say</h2>
+    </div>
+
+    <div class="review-grid">
+
+        <div class="review">
+            <b>★★★★★</b>
+            <p>Excellent service and very polite driver. The whole journey was comfortable.</p>
+            <strong>Rahul Patel</strong>
+            <small>Ahmedabad</small>
+        </div>
+
+        <div class="review">
+            <b>★★★★★</b>
+            <p>Very clean car and professional service. Highly recommended.</p>
+            <strong>Jay Shah</strong>
+            <small>Gujarat</small>
+        </div>
+
+        <div class="review">
+            <b>★★★★★</b>
+            <p>Easy booking and excellent experience. Will definitely book again.</p>
+            <strong>Priya Mehta</strong>
+            <small>Ahmedabad</small>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="faq" class="section faq">
+
+    <div class="heading">
+        <div class="eyebrow">FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-list">
+
+        <div class="faq-item">
+            <button onclick="faq(this)">
+                How can I book a cab?
+                <span>+</span>
+            </button>
+            <p>Fill the booking form and confirm your booking on WhatsApp.</p>
+        </div>
+
+        <div class="faq-item">
+            <button onclick="faq(this)">
+                Do you provide outstation services?
+                <span>+</span>
+            </button>
+            <p>Yes, one-way and round-trip outstation cab services are available.</p>
+        </div>
+
+        <div class="faq-item">
+            <button onclick="faq(this)">
+                Do you provide airport pickup?
+                <span>+</span>
+            </button>
+            <p>Yes, airport pickup and drop services are available.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="about" class="about section">
+
+    <div>
+        <div class="eyebrow">ABOUT DHYAN CABS</div>
+        <h2>Your Trusted Travel Partner</h2>
+        <p>Safe, comfortable and reliable travel services for every journey across Gujarat.</p>
+    </div>
+
+</section>
+
+</main>
+
+<a class="floating whatsapp" href="https://wa.me/919727729334" target="_blank" aria-label="Chat on WhatsApp">◉</a>
+<a class="floating call" href="tel:+919727729334" aria-label="Call Dhyan Cabs">☎</a>
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <img class="footer-logo" src="DHYAN CAB LOGO 3.webp" alt="Dhyan Cabs logo">
+            <div>
+                <strong>DHYAN CABS</strong>
+                <p>Comfort. Safety. Always On Time.</p>
+            </div>
+        </div>
+
+        <div class="footer-contact">
+            <p>Ahmedabad, Gujarat, India</p>
+            <p>+91 97272 29334</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">© 2026 Dhyan Cabs. All Rights Reserved.</div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
