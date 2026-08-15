@@ -28,8 +28,8 @@
 }
 
 :root {
-    --bg: #ffffff;
-    --bg2: #f5f7fb;
+    --bg: #a3d1ff;
+    --bg2: #cbddff;
     --card: #f6f8fc;
     --card-line: #e1e6f0;
     --gold: #f5a623;
@@ -442,6 +442,248 @@ input:focus {
 .confirm:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(245,166,35,.3);
+}
+
+.confirm:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+
+/* =========================================================
+   TRIP PILLS
+========================================================= */
+
+.trip-pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    margin-bottom: 20px;
+}
+
+.trip-pills::-webkit-scrollbar {
+    display: none;
+}
+
+.trip-pill {
+    flex-shrink: 0;
+
+    border: 1px solid #30466e;
+    background: #1b315c;
+    color: #93a0b8;
+
+    padding: 10px 20px;
+    border-radius: 30px;
+
+    font-weight: 700;
+    font-size: 13px;
+    white-space: nowrap;
+
+    transition: .2s ease;
+}
+
+.trip-pill:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+}
+
+.trip-pill.active {
+    background: var(--gold);
+    color: #111;
+    border-color: var(--gold);
+    box-shadow: 0 6px 20px rgba(245,166,35,.3);
+}
+
+
+/* =========================================================
+   LOCATION CARD (FROM / TO + AUTOCOMPLETE + SWAP)
+========================================================= */
+
+.loc-card {
+    position: relative;
+
+    background: #1b315c;
+    border: 1px solid #30466e;
+    border-radius: 12px;
+
+    margin-bottom: 14px;
+}
+
+.loc-row {
+    position: relative;
+    padding: 11px 50px 11px 15px;
+    border-bottom: 1px solid #30466e;
+}
+
+.loc-row:last-child {
+    border-bottom: none;
+}
+
+.loc-label {
+    display: block;
+
+    font-size: 10px;
+    color: #8997b0;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    margin-bottom: 6px;
+}
+
+.loc-input {
+    width: 100%;
+
+    background: transparent;
+    border: 0;
+
+    color: #ffffff;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.loc-input::placeholder {
+    color: #64749a;
+}
+
+.loc-dropdown {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    top: 100%;
+
+    background: #14264b;
+    border: 1px solid #30466e;
+    border-radius: 10px;
+
+    margin-top: 6px;
+    max-height: 220px;
+    overflow-y: auto;
+
+    z-index: 30;
+    display: none;
+
+    box-shadow: 0 20px 45px rgba(4,12,28,.4);
+}
+
+.loc-dropdown.open {
+    display: block;
+}
+
+.loc-dropdown-item {
+    padding: 10px 14px;
+
+    font-size: 13px;
+    color: #c7d0e2;
+}
+
+.loc-dropdown-item:hover,
+.loc-dropdown-item.highlighted {
+    background: #1e386b;
+    color: var(--gold);
+}
+
+.swap-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+
+    border: 0;
+    background: var(--gold);
+    color: #111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+    line-height: 1;
+
+    z-index: 10;
+    transition: transform .25s ease;
+}
+
+.swap-btn:hover {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+
+/* =========================================================
+   DATE / TIME GRID
+========================================================= */
+
+.date-time-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+
+    margin-bottom: 14px;
+}
+
+.dt-card {
+    background: #1b315c;
+    border: 1px solid #30466e;
+    border-radius: 9px;
+
+    padding: 11px 13px;
+
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.dt-card:focus-within {
+    border-color: var(--gold);
+    background: #1e386b;
+}
+
+.dt-input {
+    color-scheme: dark;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%) translateY(20px);
+
+    background: #14264b;
+    border: 1px solid var(--gold);
+    color: #ffffff;
+
+    padding: 14px 24px;
+    border-radius: 10px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    opacity: 0;
+    pointer-events: none;
+
+    z-index: 2000;
+    transition: opacity .25s ease, transform .25s ease;
+
+    box-shadow: 0 15px 35px rgba(4,12,28,.4);
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.toast.error {
+    border-color: #ff5c5c;
 }
 
 
@@ -1086,21 +1328,6 @@ footer {
     border-top: 1px solid var(--card-line);
 }
 
-.footer-map {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 45px 3% 0;
-}
-
-.footer-map iframe {
-    width: 100%;
-    height: 280px;
-    border: 1px solid var(--card-line);
-    border-radius: 16px;
-    display: block;
-}
-
 .footer-inner {
     max-width: 1200px;
 
@@ -1108,13 +1335,13 @@ footer {
 
     margin: auto;
 
-    padding: 45px 0;
+    padding: 45px 0 20px;
 
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 
     color: #6b7891;
@@ -1144,13 +1371,73 @@ footer {
     margin-top: 3px;
 }
 
-.footer-contact {
-    text-align: right;
-    font-size: 13px;
+.footer-grid {
+    max-width: 1200px;
+    width: 94%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 36px;
+
+    padding-bottom: 40px;
 }
 
-.footer-contact p + p {
-    margin-top: 4px;
+.footer-col h4 {
+    color: var(--navy);
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    margin-bottom: 16px;
+}
+
+.footer-col a {
+    display: block;
+    color: #6b7891;
+    font-size: 13px;
+    margin-bottom: 10px;
+    transition: color .2s ease;
+}
+
+.footer-col a:hover {
+    color: var(--gold-light);
+}
+
+.footer-col p {
+    color: #6b7891;
+    font-size: 12.5px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.footer-map {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--card-line);
+}
+
+.footer-map iframe {
+    width: 100%;
+    height: 150px;
+    border: 0;
+    display: block;
+}
+
+.footer-keywords {
+    max-width: 1200px;
+    width: 94%;
+    margin: 0 auto;
+
+    padding: 18px 0;
+
+    border-top: 1px solid var(--card-line);
+
+    color: #8592aa;
+    font-size: 10.5px;
+    text-align: center;
+    line-height: 1.8;
 }
 
 .copyright {
@@ -1279,10 +1566,22 @@ footer {
         text-align: center;
     }
 
-    .footer-contact {
+    .footer-grid {
+        grid-template-columns: 1fr;
         text-align: center;
-        width: 100%;
     }
+
+    .footer-col a {
+        margin: 0 auto 10px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .date-time-grid {
+        grid-template-columns: 1fr;
+    }
+
 }
 
 @media (max-width: 500px) {
@@ -1388,45 +1687,59 @@ footer {
 
     <div class="booking-card">
 
-        <div class="tabs">
-            <button class="tab active" onclick="setTab(this)">One Way</button>
-            <button class="tab" onclick="setTab(this)">Round Trip</button>
-            <button class="tab" onclick="setTab(this)">Rental</button>
-            <button class="tab" onclick="setTab(this)">Airport</button>
+        <div class="trip-pills" id="tripPills">
+            <button type="button" class="trip-pill active" data-trip="One Way">One Way</button>
+            <button type="button" class="trip-pill" data-trip="Round Trip">Round Trip</button>
+            <button type="button" class="trip-pill" data-trip="Rental">Rental</button>
+            <button type="button" class="trip-pill" data-trip="Airport">Airport</button>
         </div>
 
         <form id="bookingForm">
 
-            <div class="form-grid">
-
-                <label>
-                    FROM
-                    <input id="from" required placeholder="Enter pickup city">
-                </label>
-
-                <label>
-                    TO
-                    <input id="to" required placeholder="Enter destination city">
-                </label>
-
-                <label>
-                    PICKUP DATE
-                    <input id="date" type="date" required>
-                </label>
-
-                <label>
-                    PICKUP TIME
-                    <input id="time" type="time" required>
-                </label>
-
-                <label>
-                    MOBILE NUMBER
-                    <input id="mobile" type="tel" maxlength="10" required placeholder="10-digit number">
-                </label>
-
+            <div class="loc-card">
+                <div class="loc-row">
+                    <label class="loc-label" id="bPickupLabel">FROM</label>
+                    <input type="text" class="loc-input" id="bPickup" placeholder="Enter pickup city" autocomplete="off" required>
+                    <div class="loc-dropdown" id="bPickupDropdown"></div>
+                </div>
+                <div class="loc-row">
+                    <label class="loc-label">TO</label>
+                    <input type="text" class="loc-input" id="bDestination" placeholder="Enter destination city" autocomplete="off" required>
+                    <div class="loc-dropdown" id="bDestinationDropdown"></div>
+                </div>
+                <button type="button" class="swap-btn" id="swapBtn" title="Swap locations" aria-label="Swap pickup and destination">⇄</button>
             </div>
 
-            <button class="confirm" type="submit">
+            <div class="date-time-grid" id="dateGrid">
+                <div class="dt-card" id="pickupDateCard">
+                    <label class="loc-label">PICKUP DATE</label>
+                    <input class="loc-input dt-input" type="date" id="bDate" required>
+                </div>
+                <div class="dt-card" id="returnDateCard" style="display:none;">
+                    <label class="loc-label">RETURN DATE</label>
+                    <input class="loc-input dt-input" type="date" id="bReturnDate">
+                </div>
+                <div class="dt-card" id="rentalHoursCard" style="display:none;">
+                    <label class="loc-label">RENTAL DURATION</label>
+                    <select class="loc-input dt-input" id="bRentalHours">
+                        <option>8 Hours / 80 KM</option>
+                        <option>12 Hours / 120 KM</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="date-time-grid">
+                <div class="dt-card">
+                    <label class="loc-label">PICKUP TIME</label>
+                    <input class="loc-input dt-input" type="time" id="bTime" required>
+                </div>
+                <div class="dt-card">
+                    <label class="loc-label">MOBILE NUMBER</label>
+                    <input class="loc-input dt-input" type="tel" id="bMobile" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" placeholder="10-digit number" required>
+                </div>
+            </div>
+
+            <button class="confirm" type="submit" id="bookBtn">
                 <span aria-hidden="true">◉</span> &nbsp; Confirm Booking on WhatsApp
             </button>
 
@@ -1787,16 +2100,9 @@ footer {
 <a class="floating whatsapp" href="https://wa.me/919920019194" target="_blank" aria-label="Chat on WhatsApp">◉</a>
 <a class="floating call" href="tel:+919920019194" aria-label="Call Dhyan Cabs">☎</a>
 
-<footer>
+<div class="toast" id="toast"></div>
 
-    <div class="footer-map">
-        <iframe
-            src="https://www.google.com/maps?q=Ahmedabad,Gujarat,India&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Dhyan Cabs location map">
-        </iframe>
-    </div>
+<footer>
 
     <div class="footer-inner">
 
@@ -1808,11 +2114,44 @@ footer {
             </div>
         </div>
 
-        <div class="footer-contact">
-            <p>Ahmedabad, Gujarat, India</p>
-            <p>+91 99200 19194</p>
+    </div>
+
+    <div class="footer-grid">
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <a href="#services">Our Services</a>
+            <a href="#fleet">Our Fleet</a>
+            <a href="#routes">Popular Routes</a>
+            <a href="#booking">Book Online</a>
+            <a href="#faq">FAQ</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#about">About Us</a>
         </div>
 
+        <div class="footer-col">
+            <h4>Connect With Us</h4>
+            <p>Safe &amp; Reliable Cab Service Across Gujarat — Ahmedabad Based Travel Partner</p>
+            <a href="tel:+919920019194">+91 99200 19194</a>
+            <a href="https://wa.me/919920019194" target="_blank">Chat on WhatsApp</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Our Location</h4>
+            <div class="footer-map">
+                <iframe
+                    src="https://www.google.com/maps?q=Ahmedabad,Gujarat,India&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Dhyan Cabs location map">
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-keywords">
+        Ahmedabad Taxi Service • Airport Cab Ahmedabad • Outstation Taxi Gujarat • One Way Cab Ahmedabad • Round Trip Taxi Gujarat • Rental Cab Ahmedabad
     </div>
 
     <div class="copyright">© 2026 Dhyan Cabs. All Rights Reserved.</div>
@@ -1866,23 +2205,6 @@ document.querySelectorAll("nav a").forEach(function(link) {
 
 
 // ========================================
-// BOOKING TABS
-// ========================================
-
-function setTab(button) {
-
-    document.querySelectorAll(".tab").forEach(function(tab) {
-
-        tab.classList.remove("active");
-
-    });
-
-    button.classList.add("active");
-
-}
-
-
-// ========================================
 // FAQ
 // ========================================
 
@@ -1912,166 +2234,139 @@ function faq(button) {
 
 
 // ========================================
-// BOOKING FORM
+// BOOKING — LOCATIONS DATA
 // ========================================
 
-const form = document.getElementById("bookingForm");
+const gujaratLocations = [
+    "Ahmedabad","Gandhinagar","Surat","Vadodara","Rajkot","Bhavnagar","Jamnagar","Junagadh",
+    "Porbandar","Anand","Nadiad","Mehsana","Patan","Palanpur","Bharuch","Navsari","Valsad","Vapi",
+    "Morbi","Surendranagar","Amreli","Gandhidham","Bhuj","Mundra","Dwarka","Somnath","Gir Somnath",
+    "Sasan Gir","Ambaji","Saputara","White Rann","Dhordo","Dholavira","Statue of Unity","Kevadia",
+    "Mount Abu","Rani Ki Vav","Modhera Sun Temple","Lothal","Adalaj","Palitana","Girnar",
+    "Ahmedpur Mandvi Beach","Mandvi Beach","Polo Forest","Sabarmati Ashram","Akshardham Gandhinagar",
+    "Daman","Diu","Vadnagar","Siddhpur","Mumbai","Pune","Jaipur"
+];
+
+const airportLocations = [
+    "Ahmedabad Airport (SVPI)","Surat Airport","Vadodara Airport",
+    "Rajkot Airport (Hirasar)","Bhavnagar Airport","Mumbai Airport (CSMT)"
+];
+
+let pickupLocationList = gujaratLocations;
 
 
-if (form) {
+// ========================================
+// BOOKING — LOCATION AUTOCOMPLETE
+// ========================================
 
-    form.addEventListener("submit", function(event) {
+function setupLocationAutocomplete(inputId, dropdownId, getList) {
 
-        event.preventDefault();
+    const input = document.getElementById(inputId);
+    const dropdown = document.getElementById(dropdownId);
 
+    if (!input || !dropdown) return;
 
-        // GET FORM VALUES
+    let highlightedIndex = -1;
+    let currentMatches = [];
+    const listSource = getList || function() { return gujaratLocations; };
 
-        const from =
-            document.getElementById("from").value.trim();
+    function filterLocations(query) {
+        const list = listSource();
+        const q = query.trim().toLowerCase();
+        if (!q) return list.slice(0, 8);
+        return list.filter(function(loc) {
+            return loc.toLowerCase().includes(q);
+        }).slice(0, 8);
+    }
 
+    function renderDropdown(matches) {
+        currentMatches = matches;
+        highlightedIndex = -1;
 
-        const to =
-            document.getElementById("to").value.trim();
-
-
-        const date =
-            document.getElementById("date").value;
-
-
-        const time =
-            document.getElementById("time").value;
-
-
-        const mobile =
-            document.getElementById("mobile").value.trim();
-
-
-        const activeTabElement =
-            document.querySelector(".tab.active");
-
-
-        const activeTab =
-            activeTabElement
-                ? activeTabElement.textContent.trim()
-                : "One Way";
-
-
-        // ========================================
-        // VALIDATION
-        // ========================================
-
-
-        // FROM
-
-        if (from === "") {
-
-            alert("Please enter pickup city.");
-
-            document.getElementById("from").focus();
-
+        if (matches.length === 0) {
+            dropdown.innerHTML = "";
+            dropdown.classList.remove("open");
             return;
-
         }
 
+        dropdown.innerHTML = matches.map(function(loc, i) {
+            return '<div class="loc-dropdown-item" data-index="' + i + '">' + loc + '</div>';
+        }).join("");
 
-        // TO
+        dropdown.classList.add("open");
+    }
 
-        if (to === "") {
-
-            alert("Please enter destination city.");
-
-            document.getElementById("to").focus();
-
-            return;
-
+    function updateHighlight(items) {
+        items.forEach(function(item, i) {
+            item.classList.toggle("highlighted", i === highlightedIndex);
+        });
+        if (highlightedIndex >= 0) {
+            items[highlightedIndex].scrollIntoView({ block: "nearest" });
         }
+    }
 
+    input.addEventListener("input", function() {
+        renderDropdown(filterLocations(input.value));
+    });
 
-        // DATE
+    input.addEventListener("focus", function() {
+        renderDropdown(filterLocations(input.value));
+    });
 
-        if (date === "") {
+    input.addEventListener("blur", function() {
+        setTimeout(function() { dropdown.classList.remove("open"); }, 150);
+    });
 
-            alert("Please select pickup date.");
+    input.addEventListener("keydown", function(e) {
+        const items = dropdown.querySelectorAll(".loc-dropdown-item");
+        if (!dropdown.classList.contains("open") || items.length === 0) return;
 
-            document.getElementById("date").focus();
-
-            return;
-
+        if (e.key === "ArrowDown") {
+            e.preventDefault();
+            highlightedIndex = Math.min(highlightedIndex + 1, items.length - 1);
+            updateHighlight(items);
+        } else if (e.key === "ArrowUp") {
+            e.preventDefault();
+            highlightedIndex = Math.max(highlightedIndex - 1, 0);
+            updateHighlight(items);
+        } else if (e.key === "Enter" && highlightedIndex >= 0) {
+            e.preventDefault();
+            input.value = currentMatches[highlightedIndex];
+            dropdown.classList.remove("open");
+        } else if (e.key === "Escape") {
+            dropdown.classList.remove("open");
         }
+    });
+
+    dropdown.addEventListener("mousedown", function(e) {
+        const item = e.target.closest(".loc-dropdown-item");
+        if (!item) return;
+        e.preventDefault();
+        input.value = currentMatches[parseInt(item.dataset.index, 10)];
+        dropdown.classList.remove("open");
+    });
+}
+
+setupLocationAutocomplete("bPickup", "bPickupDropdown", function() { return pickupLocationList; });
+setupLocationAutocomplete("bDestination", "bDestinationDropdown");
 
 
-        // TIME
+// ========================================
+// BOOKING — SWAP FROM / TO
+// ========================================
 
-        if (time === "") {
+const swapBtn = document.getElementById("swapBtn");
 
-            alert("Please select pickup time.");
+if (swapBtn) {
 
-            document.getElementById("time").focus();
+    swapBtn.addEventListener("click", function() {
 
-            return;
+        const pickupEl = document.getElementById("bPickup");
+        const destEl = document.getElementById("bDestination");
 
-        }
-
-
-        // MOBILE
-
-        if (!/^[0-9]{10}$/.test(mobile)) {
-
-            alert("Please enter a valid 10-digit mobile number.");
-
-            document.getElementById("mobile").focus();
-
-            return;
-
-        }
-
-
-        // ========================================
-        // WHATSAPP MESSAGE
-        // ========================================
-
-        const message =
-
-            "DHYAN CAB BOOKING\n\n" +
-
-            "Booking Type: " +
-            activeTab +
-
-            "\nFrom: " +
-            from +
-
-            "\nTo: " +
-            to +
-
-            "\nPickup Date: " +
-            date +
-
-            "\nPickup Time: " +
-            time +
-
-            "\nCustomer Mobile: " +
-            mobile;
-
-
-        // ========================================
-        // WHATSAPP URL
-        // ========================================
-
-        const whatsappURL =
-
-            "https://wa.me/919920019194?text=" +
-
-            encodeURIComponent(message);
-
-
-        // OPEN WHATSAPP
-
-        window.open(
-            whatsappURL,
-            "_blank"
-        );
-
+        const temp = pickupEl.value;
+        pickupEl.value = destEl.value;
+        destEl.value = temp;
 
     });
 
@@ -2079,50 +2374,235 @@ if (form) {
 
 
 // ========================================
-// ONLY NUMBERS IN MOBILE NUMBER
+// BOOKING — TRIP TYPE PILLS
 // ========================================
 
-const mobileInput =
-    document.getElementById("mobile");
+let selectedTrip = "One Way";
 
+document.querySelectorAll(".trip-pill").forEach(function(pill) {
 
-if (mobileInput) {
+    pill.addEventListener("click", function() {
 
-    mobileInput.addEventListener(
-        "input",
-        function() {
+        document.querySelectorAll(".trip-pill").forEach(function(p) {
+            p.classList.remove("active");
+        });
 
-            this.value =
-                this.value
-                    .replace(/\D/g, "")
-                    .slice(0, 10);
+        pill.classList.add("active");
+        selectedTrip = pill.dataset.trip;
 
+        const rentalCard = document.getElementById("rentalHoursCard");
+        const returnCard = document.getElementById("returnDateCard");
+        const pickupLabel = document.getElementById("bPickupLabel");
+        const pickupInput = document.getElementById("bPickup");
+
+        rentalCard.style.display = "none";
+        returnCard.style.display = "none";
+
+        if (selectedTrip === "Rental") {
+            rentalCard.style.display = "block";
+        } else if (selectedTrip === "Round Trip") {
+            returnCard.style.display = "block";
         }
-    );
+
+        if (selectedTrip === "Airport") {
+            pickupLocationList = airportLocations;
+            pickupLabel.textContent = "WHICH AIRPORT";
+            pickupInput.placeholder = "Select airport";
+            pickupInput.value = "";
+        } else {
+            pickupLocationList = gujaratLocations;
+            pickupLabel.textContent = "FROM";
+            pickupInput.placeholder = "Enter pickup city";
+        }
+
+    });
+
+});
+
+
+// ========================================
+// BOOKING — TOAST
+// ========================================
+
+function showToast(msg, isError) {
+
+    let toast = document.getElementById("toast");
+
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "toast";
+        toast.className = "toast";
+        document.body.appendChild(toast);
+    }
+
+    toast.textContent = msg;
+    toast.className = "toast show" + (isError ? " error" : "");
+
+    clearTimeout(window._toastTimer);
+
+    window._toastTimer = setTimeout(function() {
+        toast.className = "toast";
+    }, 3500);
 
 }
 
 
 // ========================================
-// PREVENT OLD BOOKING DATES
+// BOOKING — PREVENT OLD DATES
 // ========================================
 
-const dateInput =
-    document.getElementById("date");
+const bDateInput = document.getElementById("bDate");
+const bReturnDateInput = document.getElementById("bReturnDate");
+const today = new Date().toISOString().split("T")[0];
+
+if (bDateInput) bDateInput.setAttribute("min", today);
+if (bReturnDateInput) bReturnDateInput.setAttribute("min", today);
 
 
-if (dateInput) {
+// ========================================
+// BOOKING — ONLY NUMBERS IN MOBILE
+// ========================================
 
-    const today =
-        new Date()
-            .toISOString()
-            .split("T")[0];
+const bMobileInput = document.getElementById("bMobile");
+
+if (bMobileInput) {
+
+    bMobileInput.addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, "").slice(0, 10);
+    });
+
+}
 
 
-    dateInput.setAttribute(
-        "min",
-        today
-    );
+// ========================================
+// BOOKING FORM SUBMIT
+// ========================================
+
+const form = document.getElementById("bookingForm");
+
+if (form) {
+
+    form.addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const btn = document.getElementById("bookBtn");
+
+        const pickup = document.getElementById("bPickup").value.trim();
+        const dest = document.getElementById("bDestination").value.trim();
+        const date = document.getElementById("bDate").value;
+        const returnDate = document.getElementById("bReturnDate") ? document.getElementById("bReturnDate").value : "";
+        const time = document.getElementById("bTime").value;
+        const mobile = document.getElementById("bMobile").value.trim();
+        const rentalHours = document.getElementById("bRentalHours") ? document.getElementById("bRentalHours").value : "";
+        const trip = selectedTrip;
+
+        // VALIDATION
+
+        if (!pickup) {
+            showToast(trip === "Airport" ? "Please select an airport" : "Please enter pickup city", true);
+            return;
+        }
+
+        if (!dest) {
+            showToast("Please enter destination city", true);
+            return;
+        }
+
+        if (date === "") {
+            showToast("Please select pickup date", true);
+            return;
+        }
+
+        if (time === "") {
+            showToast("Please select pickup time", true);
+            return;
+        }
+
+        if (!/^[0-9]{10}$/.test(mobile)) {
+            showToast("Please enter a valid 10-digit mobile number", true);
+            return;
+        }
+
+        if (trip === "Round Trip" && !returnDate) {
+            showToast("Please select a return date", true);
+            return;
+        }
+
+        btn.disabled = true;
+        const originalBtnHTML = btn.innerHTML;
+        btn.innerHTML = "Processing…";
+
+        // SAVE TO FIRESTORE (fails silently if Firebase module hasn't loaded)
+
+        if (window.saveBookingToFirebase) {
+            try {
+                await window.saveBookingToFirebase("bookings", {
+                    mobile: mobile,
+                    pickup: pickup,
+                    destination: dest,
+                    date: date,
+                    returnDate: trip === "Round Trip" ? returnDate : "",
+                    rentalHours: trip === "Rental" ? rentalHours : "",
+                    time: time,
+                    trip: trip,
+                    received: new Date()
+                });
+            } catch (err) {
+                console.error("Firebase save error:", err);
+            }
+        }
+
+        // BUILD WHATSAPP MESSAGE
+
+        let message =
+            "DHYAN CAB BOOKING\n\n" +
+            "Booking Type: " + trip +
+            "\nFrom: " + pickup +
+            "\nTo: " + dest +
+            "\nPickup Date: " + date;
+
+        if (trip === "Round Trip" && returnDate) {
+            message += "\nReturn Date: " + returnDate;
+        }
+
+        message += "\nPickup Time: " + time;
+
+        if (trip === "Rental" && rentalHours) {
+            message += "\nRental Package: " + rentalHours;
+        }
+
+        message += "\nCustomer Mobile: " + mobile;
+
+        const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
+
+        showToast("Booking saved! Redirecting you to WhatsApp…");
+
+        setTimeout(function() {
+
+            window.open(whatsappURL, "_blank");
+
+            form.reset();
+            document.querySelectorAll(".trip-pill").forEach(function(p) {
+                p.classList.remove("active");
+            });
+            const oneWayPill = document.querySelector('.trip-pill[data-trip="One Way"]');
+            if (oneWayPill) oneWayPill.classList.add("active");
+            selectedTrip = "One Way";
+            pickupLocationList = gujaratLocations;
+            const pickupLabel = document.getElementById("bPickupLabel");
+            if (pickupLabel) pickupLabel.textContent = "FROM";
+            document.getElementById("bPickup").placeholder = "Enter pickup city";
+            document.getElementById("returnDateCard").style.display = "none";
+            document.getElementById("rentalHoursCard").style.display = "none";
+            if (bDateInput) bDateInput.setAttribute("min", today);
+
+            btn.disabled = false;
+            btn.innerHTML = originalBtnHTML;
+
+        }, 1200);
+
+    });
 
 }
 
@@ -2205,6 +2685,12 @@ document.addEventListener(
 
 
 console.log("DHYAN CAB website loaded successfully.");
+</script>
+
+<!-- ── OPTIONAL FIREBASE MODULE (loaded separately; core site works even if this fails) ── -->
+<script type="module">
+import { saveDocument } from './firebase-config.js';
+window.saveBookingToFirebase = saveDocument;
 </script>
 
 </body>
