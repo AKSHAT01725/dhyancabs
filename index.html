@@ -688,6 +688,109 @@ input:focus {
 
 
 /* =========================================================
+   QUICK BOOK MODAL (Fleet / Route inquiries)
+========================================================= */
+
+.quick-book-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(4,10,24,.75);
+    backdrop-filter: blur(6px);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    z-index: 3000;
+}
+
+.quick-book-overlay.open {
+    display: flex;
+}
+
+.quick-book-modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 380px;
+
+    background: #14264b;
+    border: 1px solid #2a416c;
+    border-radius: 16px;
+
+    padding: 28px 24px;
+
+    box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+
+.quick-book-modal h3 {
+    color: #f4f7ff;
+    font-size: 18px;
+    font-family: "Plus Jakarta Sans", sans-serif;
+
+    margin-bottom: 6px;
+}
+
+.quick-book-modal p {
+    color: #93a0b8;
+    font-size: 12.5px;
+    line-height: 1.6;
+
+    margin-bottom: 18px;
+}
+
+.quick-book-modal input {
+    width: 100%;
+
+    background: #1b315c;
+    border: 1px solid #30466e;
+    border-radius: 9px;
+
+    padding: 11px 13px;
+
+    color: #ffffff;
+    font-size: 14px;
+
+    outline: none;
+
+    margin-bottom: 18px;
+    transition: border-color .2s ease;
+}
+
+.quick-book-modal input:focus {
+    border-color: var(--gold);
+}
+
+.qb-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    background: #1b315c;
+    border: 1px solid #30466e;
+    color: #93a0b8;
+
+    font-size: 16px;
+    line-height: 1;
+
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.qb-close:hover {
+    color: #ffffff;
+    border-color: var(--gold);
+}
+
+
+/* =========================================================
    STATS
 ========================================================= */
 
@@ -1863,7 +1966,7 @@ footer {
                     <span>✓ 24×7 Available</span>
                 </div>
 
-                <a href="https://wa.me/919920019194" target="_blank" class="journey-btn">
+                <a href="javascript:void(0)" class="journey-btn" onclick="openQuickBook('fleet', 'Swift Dzire', 11)">
                     ☎ Book on WhatsApp
                 </a>
 
@@ -1903,7 +2006,7 @@ footer {
                     <span>✓ Family Ideal</span>
                 </div>
 
-                <a href="https://wa.me/919920019194" target="_blank" class="journey-btn">
+                <a href="javascript:void(0)" class="journey-btn" onclick="openQuickBook('fleet', 'Maruti Ertiga', 13)">
                     ☎ Book on WhatsApp
                 </a>
 
@@ -1943,7 +2046,7 @@ footer {
                     <span>✓ Long-Distance</span>
                 </div>
 
-                <a href="https://wa.me/919920019194" target="_blank" class="journey-btn">
+                <a href="javascript:void(0)" class="journey-btn" onclick="openQuickBook('fleet', 'Innova Crysta', 18)">
                     ☎ Book on WhatsApp
                 </a>
 
@@ -1970,7 +2073,7 @@ footer {
             <div>
                 <h3>Ahmedabad To Vadodara</h3>
                 <p>Sedan: <b>₹1600</b> &nbsp; • &nbsp; SUV: <b>₹2300</b></p>
-                <a href="#booking">→ Book Now</a>
+                <a href="javascript:void(0)" onclick="openQuickBook('route', 'Ahmedabad To Vadodara', 1600, 2300)">→ Book Now</a>
             </div>
         </article>
 
@@ -1979,7 +2082,7 @@ footer {
             <div>
                 <h3>Ahmedabad To Surat</h3>
                 <p>Sedan: <b>₹3200</b> &nbsp; • &nbsp; SUV: <b>₹3800</b></p>
-                <a href="#booking">→ Book Now</a>
+                <a href="javascript:void(0)" onclick="openQuickBook('route', 'Ahmedabad To Surat', 3200, 3800)">→ Book Now</a>
             </div>
         </article>
 
@@ -1988,7 +2091,7 @@ footer {
             <div>
                 <h3>Ahmedabad To Rajkot</h3>
                 <p>Sedan: <b>₹2300</b> &nbsp; • &nbsp; SUV: <b>₹2800</b></p>
-                <a href="#booking">→ Book Now</a>
+                <a href="javascript:void(0)" onclick="openQuickBook('route', 'Ahmedabad To Rajkot', 2300, 2800)">→ Book Now</a>
             </div>
         </article>
 
@@ -1997,7 +2100,7 @@ footer {
             <div>
                 <h3>Ahmedabad To Bhavnagar</h3>
                 <p>Sedan: <b>₹2500</b> &nbsp; • &nbsp; SUV: <b>₹3200</b></p>
-                <a href="#booking">→ Book Now</a>
+                <a href="javascript:void(0)" onclick="openQuickBook('route', 'Ahmedabad To Bhavnagar', 2500, 3200)">→ Book Now</a>
             </div>
         </article>
 
@@ -2006,7 +2109,7 @@ footer {
             <div>
                 <h3>Ahmedabad To Mumbai</h3>
                 <p>Sedan: <b>₹6500</b> &nbsp; • &nbsp; SUV: <b>₹8500</b></p>
-                <a href="#booking">→ Book Now</a>
+                <a href="javascript:void(0)" onclick="openQuickBook('route', 'Ahmedabad To Mumbai', 6500, 8500)">→ Book Now</a>
             </div>
         </article>
 
@@ -2101,6 +2204,19 @@ footer {
 <a class="floating call" href="tel:+919920019194" aria-label="Call Dhyan Cabs">☎</a>
 
 <div class="toast" id="toast"></div>
+
+<div class="quick-book-overlay" id="quickBookOverlay">
+    <div class="quick-book-modal">
+        <button type="button" class="qb-close" onclick="closeQuickBook()" aria-label="Close">×</button>
+        <h3 id="qbTitle">Quick Booking</h3>
+        <p id="qbSub"></p>
+        <label class="loc-label">MOBILE NUMBER</label>
+        <input type="tel" id="qbMobile" maxlength="10" inputmode="numeric" placeholder="10-digit number">
+        <button type="button" class="confirm" id="qbConfirmBtn" onclick="confirmQuickBook()">
+            <span aria-hidden="true">◉</span> &nbsp; Confirm on WhatsApp
+        </button>
+    </div>
+</div>
 
 <footer>
 
@@ -2682,6 +2798,137 @@ document.addEventListener(
 
     }
 );
+
+
+// ========================================
+// QUICK BOOK MODAL (Fleet / Route cards)
+// ========================================
+
+let quickBookData = null;
+
+window.openQuickBook = function(type, name, priceA, priceB) {
+
+    quickBookData = { type: type, name: name, priceA: priceA, priceB: priceB };
+
+    const title = document.getElementById("qbTitle");
+    const sub = document.getElementById("qbSub");
+
+    if (type === "route") {
+        title.textContent = name;
+        sub.textContent = "Sedan: ₹" + priceA + "  •  SUV: ₹" + priceB + ". Enter your mobile number to confirm.";
+    } else {
+        title.textContent = name;
+        sub.textContent = "Round Trip Rate: ₹" + priceA + " / km. Enter your mobile number to confirm.";
+    }
+
+    document.getElementById("qbMobile").value = "";
+    document.getElementById("quickBookOverlay").classList.add("open");
+
+    setTimeout(function() {
+        document.getElementById("qbMobile").focus();
+    }, 100);
+
+};
+
+window.closeQuickBook = function() {
+    document.getElementById("quickBookOverlay").classList.remove("open");
+    quickBookData = null;
+};
+
+window.confirmQuickBook = async function() {
+
+    if (!quickBookData) return;
+
+    const mobile = document.getElementById("qbMobile").value.trim();
+
+    if (!/^[0-9]{10}$/.test(mobile)) {
+        showToast("Please enter a valid 10-digit mobile number", true);
+        return;
+    }
+
+    const btn = document.getElementById("qbConfirmBtn");
+    btn.disabled = true;
+    const originalBtnHTML = btn.innerHTML;
+    btn.innerHTML = "Processing…";
+
+    const type = quickBookData.type;
+    const name = quickBookData.name;
+    const priceA = quickBookData.priceA;
+    const priceB = quickBookData.priceB;
+
+    if (window.saveBookingToFirebase) {
+        try {
+            if (type === "route") {
+                await window.saveBookingToFirebase("routeInquiries", {
+                    route: name,
+                    sedan: String(priceA),
+                    suv: String(priceB),
+                    mobile: mobile,
+                    received: new Date()
+                });
+            } else {
+                await window.saveBookingToFirebase("roundTripRequests", {
+                    car: name,
+                    rate: String(priceA),
+                    mobile: mobile,
+                    received: new Date()
+                });
+            }
+        } catch (err) {
+            console.error("Firebase save error:", err);
+        }
+    }
+
+    let message;
+
+    if (type === "route") {
+        message =
+            "DHYAN CAB ROUTE BOOKING\n\n" +
+            "Route: " + name +
+            "\nSedan: ₹" + priceA +
+            "\nSUV: ₹" + priceB +
+            "\nCustomer Mobile: " + mobile;
+    } else {
+        message =
+            "DHYAN CAB FLEET BOOKING\n\n" +
+            "Vehicle: " + name +
+            "\nRound Trip Rate: ₹" + priceA + " / km" +
+            "\nCustomer Mobile: " + mobile;
+    }
+
+    const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
+
+    showToast("Booking saved! Redirecting you to WhatsApp…");
+
+    setTimeout(function() {
+
+        window.open(whatsappURL, "_blank");
+
+        closeQuickBook();
+
+        btn.disabled = false;
+        btn.innerHTML = originalBtnHTML;
+
+    }, 1000);
+
+};
+
+const qbMobileInput = document.getElementById("qbMobile");
+
+if (qbMobileInput) {
+
+    qbMobileInput.addEventListener("input", function() {
+        this.value = this.value.replace(/\D/g, "").slice(0, 10);
+    });
+
+    qbMobileInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            confirmQuickBook();
+        }
+    });
+
+}
 
 
 console.log("DHYAN CAB website loaded successfully.");
