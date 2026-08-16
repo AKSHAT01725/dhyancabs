@@ -1134,9 +1134,10 @@ input:focus {
 ========================================================= */
 
 .route-grid {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
 
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    justify-content: center;
 
     gap: 20px;
 
@@ -1146,6 +1147,8 @@ input:focus {
 }
 
 .route-card {
+    flex: 0 1 340px;
+
     background: #14264b;
 
     border: 1px solid #2a416c;
@@ -1796,6 +1799,11 @@ footer {
 
     .date-time-grid {
         grid-template-columns: 1fr;
+    }
+
+    .route-card {
+        flex-basis: 100%;
+        max-width: 400px;
     }
 
 }
