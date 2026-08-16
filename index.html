@@ -2586,8 +2586,8 @@ footer {
 
 </main>
 
-<a class="floating whatsapp" href="https://wa.me/919727729334?text=Hello%20Dhyan%20Cabs,%20I%20want%20cab%20service.%20Please%20share%20details." target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-<a class="floating call" href="tel:+919727729334" title="Call Now"><i class="fas fa-phone"></i></a>
+<a class="floating whatsapp" href="https://wa.me/919920019194" target="_blank" aria-label="Chat on WhatsApp">◉</a>
+<a class="floating call" href="tel:+919920019194" aria-label="Call Dhyan Cabs">☎</a>
 
 <div class="toast" id="toast"></div>
 
@@ -3116,9 +3116,13 @@ if (form) {
             }
         }
 
-        showToast("Booking confirmed! We'll contact you shortly.");
+        const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
+
+        showToast("Booking saved! Redirecting you to WhatsApp…");
 
         setTimeout(function() {
+
+            window.open(whatsappURL, "_blank");
 
             form.reset();
             document.querySelectorAll(".trip-pill").forEach(function(p) {
