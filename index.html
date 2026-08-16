@@ -1220,6 +1220,119 @@ input:focus {
 
 
 /* =========================================================
+   TRAVEL SOLUTIONS (Fleet + Tour Packages cards)
+========================================================= */
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 24px;
+
+    max-width: 1000px;
+    margin: auto;
+}
+
+.solution-card {
+    background: #14264b;
+    border: 1px solid #2a416c;
+    border-radius: 18px;
+
+    padding: 32px 28px;
+
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+.solution-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 35px rgba(15,28,56,.25);
+}
+
+.solution-icon {
+    font-size: 34px;
+    margin-bottom: 14px;
+}
+
+.solution-card h3 {
+    font-size: 19px;
+    font-weight: 800;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: #f4f7ff;
+
+    margin-bottom: 8px;
+}
+
+.solution-sub {
+    font-size: 13px;
+    color: #93a0b8;
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+}
+
+.solution-list {
+    list-style: none;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+
+    margin-bottom: 22px;
+}
+
+.solution-list li {
+    position: relative;
+
+    padding-left: 18px;
+
+    font-size: 13px;
+    color: #d4dae8;
+}
+
+.solution-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.solution-services {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 22px;
+}
+
+.solution-services span {
+    background: #1b315c;
+    border: 1px solid #30466e;
+    border-radius: 30px;
+
+    padding: 8px 16px;
+
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #d4dae8;
+}
+
+.solution-footer {
+    border-top: 1px solid #2a416c;
+    padding-top: 18px;
+
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #93a0b8;
+}
+
+.solution-footer b {
+    color: var(--gold);
+}
+
+
+/* =========================================================
    REVIEWS
 ========================================================= */
 
@@ -1928,7 +2041,7 @@ footer {
 
     <div class="journey-heading">
         <div class="journey-small">OUR FLEET</div>
-        <h2>Everything You Need For Your Journey</h2>
+        <h2>Everything You Need for Your Journey</h2>
         <p>Choose from our comfortable, reliable and well-maintained vehicles for every type of journey.</p>
     </div>
 
@@ -2112,6 +2225,60 @@ footer {
                 <a href="javascript:void(0)" onclick="openQuickBook('route', 'Ahmedabad To Mumbai', 6500, 8500)">→ Book Now</a>
             </div>
         </article>
+
+    </div>
+
+</section>
+
+<section id="travel-solutions" class="section solutions">
+
+    <div class="heading">
+        <div class="eyebrow">BEYOND JUST CABS</div>
+        <h2>Complete Travel Solutions</h2>
+        <p>Vehicles, packages and everything else your journey needs — under one roof.</p>
+    </div>
+
+    <div class="solutions-grid">
+
+        <div class="solution-card">
+
+            <div class="solution-icon">🚘</div>
+            <h3>Complete Travel Solutions</h3>
+            <p class="solution-sub">All Types of Cars, Tempo Travellers &amp; Buses Available</p>
+
+            <ul class="solution-list">
+                <li>Swift Dzire</li>
+                <li>Maruti Suzuki Ertiga</li>
+                <li>Innova Crysta</li>
+                <li>Force Urbania</li>
+                <li>Mini Bus</li>
+                <li>Buses up to <b>52 Seaters</b></li>
+            </ul>
+
+            <div class="solution-footer">
+                📍 <b>Service Available:</b> All Over India
+            </div>
+
+        </div>
+
+        <div class="solution-card">
+
+            <div class="solution-icon">🌍</div>
+            <h3>Complete Tour Packages</h3>
+            <p class="solution-sub">Customisable packages available across all of India.</p>
+
+            <div class="solution-services">
+                <span>🚘 Car Booking</span>
+                <span>🏨 Hotel Booking</span>
+                <span>✈️ Flight Booking</span>
+                <span>🚆 Train Booking</span>
+            </div>
+
+            <div class="solution-footer">
+                From vehicle arrangements to complete tour packages, <b>Dhyan Cabs</b> offers a convenient, comfortable &amp; customised travel experience.
+            </div>
+
+        </div>
 
     </div>
 
