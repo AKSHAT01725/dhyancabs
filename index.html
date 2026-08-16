@@ -1497,6 +1497,149 @@ input:focus {
 
 
 /* =========================================================
+   CONTACT (GET IN TOUCH)
+========================================================= */
+
+.contact {
+    position: relative;
+
+    background: linear-gradient(180deg, #0a1730, #0a1424);
+
+    padding: 90px 3% 130px;
+
+    text-align: center;
+
+    overflow: visible;
+}
+
+.contact-inner {
+    max-width: 700px;
+    margin: auto;
+}
+
+.contact h2 {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+
+    color: #ffffff;
+
+    margin: 10px 0 26px;
+}
+
+.contact-phone {
+    display: block;
+
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    color: var(--gold);
+
+    margin-bottom: 34px;
+
+    transition: transform .2s ease;
+}
+
+.contact-phone:hover {
+    transform: scale(1.03);
+}
+
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 14px;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 13px 26px;
+    border-radius: 30px;
+
+    font-weight: 700;
+    font-size: 13.5px;
+
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.contact-btn-gold {
+    background: var(--gold);
+    color: #111;
+}
+
+.contact-btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(245,166,35,.3);
+}
+
+.contact-btn-whatsapp {
+    background: rgba(37,211,102,.12);
+    border: 1px solid rgba(37,211,102,.35);
+    color: #25d366;
+}
+
+.contact-btn-whatsapp:hover {
+    transform: translateY(-2px);
+    background: rgba(37,211,102,.2);
+}
+
+.contact-btn-dark {
+    background: #14264b;
+    border: 1px solid #2a416c;
+    color: #ffffff;
+}
+
+.contact-btn-dark:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+.rating-badge {
+    position: absolute;
+    left: 3%;
+    bottom: -32px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: #14264b;
+    border: 1px solid #2a416c;
+    border-radius: 14px;
+
+    padding: 14px 20px;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,.35);
+
+    z-index: 20;
+}
+
+.rating-badge .rating-star {
+    color: var(--gold);
+    font-size: 20px;
+}
+
+.rating-badge strong {
+    display: block;
+    color: #f4f7ff;
+    font-size: 13.5px;
+}
+
+.rating-badge small {
+    display: block;
+    color: #8592aa;
+    font-size: 11px;
+}
+
+
+/* =========================================================
    FLOATING BUTTONS
 ========================================================= */
 
@@ -1789,6 +1932,25 @@ footer {
 
     .footer-col a {
         margin: 0 auto 10px;
+    }
+
+    .contact-phone {
+        font-size: 36px;
+    }
+
+    .contact h2 {
+        font-size: 32px;
+    }
+
+    .contact-btn {
+        padding: 11px 20px;
+        font-size: 12.5px;
+    }
+
+    .rating-badge {
+        position: static;
+        margin: 40px auto 0;
+        width: fit-content;
     }
 }
 
@@ -2377,6 +2539,40 @@ footer {
         <div class="eyebrow">ABOUT DHYAN CABS</div>
         <h2>Your Trusted Travel Partner</h2>
         <p>Safe, comfortable and reliable travel services for every journey across Gujarat.</p>
+    </div>
+
+</section>
+
+<section id="contact" class="contact">
+
+    <div class="contact-inner">
+        <div class="eyebrow">GET IN TOUCH</div>
+        <h2>Contact Us</h2>
+
+        <a href="tel:+919920019194" class="contact-phone">99200 19194</a>
+
+        <div class="contact-actions">
+            <a href="tel:+919920019194" class="contact-btn contact-btn-gold">
+                <span aria-hidden="true">☎</span> Call Now
+            </a>
+            <a href="https://wa.me/919920019194" target="_blank" class="contact-btn contact-btn-whatsapp">
+                <span aria-hidden="true">◉</span> WhatsApp
+            </a>
+            <a href="#" target="_blank" class="contact-btn contact-btn-dark">
+                <span aria-hidden="true">📷</span> Instagram
+            </a>
+            <a href="#" target="_blank" class="contact-btn contact-btn-dark">
+                <span aria-hidden="true">★</span> Google
+            </a>
+        </div>
+    </div>
+
+    <div class="rating-badge">
+        <span class="rating-star">★</span>
+        <div>
+            <strong>4.9/5 Rating</strong>
+            <small>100+ Happy Customers</small>
+        </div>
     </div>
 
 </section>
