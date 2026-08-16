@@ -3169,7 +3169,8 @@ if (form) {
                 pickup_date: date,
                 return_date: trip === "Round Trip" ? returnDate : "",
                 pickup_time: time,
-                passengers: passengers
+                passengers: passengers,
+                received: new Date().toLocaleString("en-IN")
             });
         }
 
@@ -3449,7 +3450,8 @@ window.confirmQuickBook = async function() {
             pickup_date: "",
             return_date: "",
             pickup_time: "",
-            passengers: ""
+            passengers: "",
+            received: new Date().toLocaleString("en-IN")
         });
     }
 
