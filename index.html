@@ -2684,6 +2684,25 @@ footer {
 
 </footer>
 
+<!-- ── EMAILJS (booking notifications) ── -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+(function() {
+    emailjs.init({ publicKey: "XiIRu6RiWbagNYfE8" });
+})();
+
+window.EMAILJS_SERVICE_ID = "service_r0coc6v";
+window.EMAILJS_TEMPLATE_ID = "template_n5ho2kp";
+
+window.sendBookingEmail = function(params) {
+    if (typeof emailjs === "undefined") return Promise.resolve();
+    return emailjs.send(window.EMAILJS_SERVICE_ID, window.EMAILJS_TEMPLATE_ID, params)
+        .catch(function(err) {
+            console.error("EmailJS send error:", err);
+        });
+};
+</script>
+
 <script>
 // ========================================
 // DHYAN CAB - SCRIPT
@@ -3116,6 +3135,24 @@ if (form) {
 
         message += "\nCustomer Mobile: " + mobile;
 
+        // SEND EMAIL NOTIFICATION (fails silently, never blocks WhatsApp redirect)
+
+        if (window.sendBookingEmail) {
+            window.sendBookingEmail({
+                subject: "New Booking — " + trip + " (" + pickup + " to " + dest + ")",
+                message: message,
+                customer_name: name,
+                customer_mobile: mobile,
+                booking_type: trip,
+                pickup: pickup,
+                destination: dest,
+                pickup_date: date,
+                return_date: trip === "Round Trip" ? returnDate : "",
+                pickup_time: time,
+                passengers: passengers
+            });
+        }
+
         const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
 
         showToast("Booking saved! Redirecting you to WhatsApp…");
@@ -3254,6 +3291,7 @@ window.openQuickBook = async function(type, name, priceA, priceB) {
     }
 
     let message;
+    let subject;
 
     if (type === "route") {
         message =
@@ -3261,11 +3299,31 @@ window.openQuickBook = async function(type, name, priceA, priceB) {
             "Route: " + name +
             "\nSedan: ₹" + priceA +
             "\nSUV: ₹" + priceB;
+        subject = "New Route Inquiry — " + name;
     } else {
         message =
             "DHYAN CAB FLEET BOOKING\n\n" +
             "Vehicle: " + name +
             "\nRound Trip Rate: ₹" + priceA + " / km";
+        subject = "New Fleet Inquiry — " + name;
+    }
+
+    // SEND EMAIL NOTIFICATION (fails silently, never blocks WhatsApp redirect)
+
+    if (window.sendBookingEmail) {
+        window.sendBookingEmail({
+            subject: subject,
+            message: message,
+            customer_name: "N/A",
+            customer_mobile: "N/A",
+            booking_type: type === "route" ? "Route Inquiry" : "Fleet Inquiry",
+            pickup: "",
+            destination: type === "route" ? name : "",
+            pickup_date: "",
+            return_date: "",
+            pickup_time: "",
+            passengers: ""
+        });
     }
 
     const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
