@@ -2627,6 +2627,23 @@ footer {
 
 <div class="toast" id="toast"></div>
 
+<!-- QUICK BOOK MODAL (Fleet / Route inquiries — collects customer name + mobile) -->
+<div class="quick-book-overlay" id="quickBookOverlay">
+    <div class="quick-book-modal">
+        <button type="button" class="qb-close" onclick="closeQuickBook()" aria-label="Close">×</button>
+        <h3 id="qbTitle">Confirm Booking</h3>
+        <p id="qbSubtitle">Please share your details so our team can reach you.</p>
+
+        <label class="loc-label" style="display:block;margin-bottom:7px;">YOUR NAME</label>
+        <input type="text" id="qbName" placeholder="Full name" autocomplete="off">
+
+        <label class="loc-label" style="display:block;margin-bottom:7px;">MOBILE NUMBER</label>
+        <input type="tel" id="qbMobile" maxlength="10" pattern="[0-9]{10}" inputmode="numeric" placeholder="10-digit number" autocomplete="off">
+
+        <button type="button" class="confirm" id="qbConfirmBtn" onclick="confirmQuickBook()">Continue to WhatsApp</button>
+    </div>
+</div>
+
 <footer>
 
     <div class="footer-inner">
@@ -3265,23 +3282,121 @@ document.addEventListener(
 
 // ========================================
 // QUICK BOOK MODAL (Fleet / Route cards)
+// Collects customer name + mobile before
+// redirecting to WhatsApp.
 // ========================================
 
-window.openQuickBook = async function(type, name, priceA, priceB) {
+let qbPending = null;
+
+window.openQuickBook = function(type, name, priceA, priceB) {
+
+    qbPending = { type: type, name: name, priceA: priceA, priceB: priceB };
+
+    const overlay = document.getElementById("quickBookOverlay");
+    const title = document.getElementById("qbTitle");
+    const subtitle = document.getElementById("qbSubtitle");
+    const qbNameInput = document.getElementById("qbName");
+    const qbMobileInputEl = document.getElementById("qbMobile");
+
+    title.textContent = name;
+
+    if (type === "route") {
+        subtitle.textContent = "Sedan: ₹" + priceA + "  •  SUV: ₹" + priceB + ". Share your details to confirm on WhatsApp.";
+    } else {
+        subtitle.textContent = "Round Trip Rate: ₹" + priceA + " / km. Share your details to confirm on WhatsApp.";
+    }
+
+    if (qbNameInput) qbNameInput.value = "";
+    if (qbMobileInputEl) qbMobileInputEl.value = "";
+
+    overlay.classList.add("open");
+
+    if (qbNameInput) qbNameInput.focus();
+
+};
+
+window.closeQuickBook = function() {
+
+    const overlay = document.getElementById("quickBookOverlay");
+    if (overlay) overlay.classList.remove("open");
+
+    qbPending = null;
+
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const overlay = document.getElementById("quickBookOverlay");
+
+    if (overlay) {
+        overlay.addEventListener("click", function(e) {
+            if (e.target === overlay) closeQuickBook();
+        });
+    }
+
+    const qbMobileInputEl = document.getElementById("qbMobile");
+
+    if (qbMobileInputEl) {
+        qbMobileInputEl.addEventListener("input", function() {
+            this.value = this.value.replace(/\D/g, "").slice(0, 10);
+        });
+    }
+
+});
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeQuickBook();
+});
+
+window.confirmQuickBook = async function() {
+
+    if (!qbPending) return;
+
+    const nameInput = document.getElementById("qbName");
+    const mobileInput = document.getElementById("qbMobile");
+    const confirmBtn = document.getElementById("qbConfirmBtn");
+
+    const customerName = nameInput.value.trim();
+    const customerMobile = mobileInput.value.trim();
+
+    if (!customerName) {
+        showToast("Please enter your name", true);
+        return;
+    }
+
+    if (!/^[0-9]{10}$/.test(customerMobile)) {
+        showToast("Please enter a valid 10-digit mobile number", true);
+        return;
+    }
+
+    const type = qbPending.type;
+    const itemName = qbPending.name;
+    const priceA = qbPending.priceA;
+    const priceB = qbPending.priceB;
+
+    confirmBtn.disabled = true;
+    const originalBtnHTML = confirmBtn.innerHTML;
+    confirmBtn.innerHTML = "Processing…";
+
+    // SAVE TO FIRESTORE (fails silently if Firebase module hasn't loaded)
 
     if (window.saveBookingToFirebase) {
         try {
             if (type === "route") {
                 await window.saveBookingToFirebase("routeInquiries", {
-                    route: name,
+                    route: itemName,
                     sedan: String(priceA),
                     suv: String(priceB),
+                    customerName: customerName,
+                    customerMobile: customerMobile,
                     received: new Date()
                 });
             } else {
                 await window.saveBookingToFirebase("roundTripRequests", {
-                    car: name,
+                    car: itemName,
                     rate: String(priceA),
+                    customerName: customerName,
+                    customerMobile: customerMobile,
                     received: new Date()
                 });
             }
@@ -3290,22 +3405,28 @@ window.openQuickBook = async function(type, name, priceA, priceB) {
         }
     }
 
+    // BUILD WHATSAPP MESSAGE
+
     let message;
     let subject;
 
     if (type === "route") {
         message =
             "DHYAN CAB ROUTE BOOKING\n\n" +
-            "Route: " + name +
+            "Customer Name: " + customerName +
+            "\nCustomer Mobile: " + customerMobile +
+            "\nRoute: " + itemName +
             "\nSedan: ₹" + priceA +
             "\nSUV: ₹" + priceB;
-        subject = "New Route Inquiry — " + name;
+        subject = "New Route Inquiry — " + itemName;
     } else {
         message =
             "DHYAN CAB FLEET BOOKING\n\n" +
-            "Vehicle: " + name +
+            "Customer Name: " + customerName +
+            "\nCustomer Mobile: " + customerMobile +
+            "\nVehicle: " + itemName +
             "\nRound Trip Rate: ₹" + priceA + " / km";
-        subject = "New Fleet Inquiry — " + name;
+        subject = "New Fleet Inquiry — " + itemName;
     }
 
     // SEND EMAIL NOTIFICATION (fails silently, never blocks WhatsApp redirect)
@@ -3314,11 +3435,11 @@ window.openQuickBook = async function(type, name, priceA, priceB) {
         window.sendBookingEmail({
             subject: subject,
             message: message,
-            customer_name: "N/A",
-            customer_mobile: "N/A",
+            customer_name: customerName,
+            customer_mobile: customerMobile,
             booking_type: type === "route" ? "Route Inquiry" : "Fleet Inquiry",
             pickup: "",
-            destination: type === "route" ? name : "",
+            destination: type === "route" ? itemName : "",
             pickup_date: "",
             return_date: "",
             pickup_time: "",
@@ -3329,6 +3450,11 @@ window.openQuickBook = async function(type, name, priceA, priceB) {
     const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
 
     window.open(whatsappURL, "_blank");
+
+    confirmBtn.disabled = false;
+    confirmBtn.innerHTML = originalBtnHTML;
+
+    closeQuickBook();
 
 };
 
