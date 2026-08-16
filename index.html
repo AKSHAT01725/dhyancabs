@@ -1788,6 +1788,19 @@ footer {
     display: block;
 }
 
+.footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+
+    max-width: 1200px;
+    width: 94%;
+    margin: 0 auto;
+
+    padding: 34px 0 6px;
+}
+
 .footer-keywords {
     max-width: 1200px;
     width: 94%;
@@ -2135,7 +2148,7 @@ footer {
             </div>
 
             <button class="confirm" type="submit" id="bookBtn">
-                <span aria-hidden="true">◉</span> &nbsp; Confirm Booking on WhatsApp
+                <span aria-hidden="true">◉</span> &nbsp; Confirm Booking
             </button>
 
         </form>
@@ -2559,12 +2572,20 @@ footer {
             <a href="https://wa.me/919920019194" target="_blank" class="contact-btn contact-btn-whatsapp">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
             </a>
-            <a href="#" target="_blank" class="contact-btn contact-btn-dark">
+            <a href="https://www.instagram.com/dhyancabs?igsh=MWt2NXh2Nmx0OW8wMg==" target="_blank" class="contact-btn contact-btn-dark">
                 <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
             </a>
-            <a href="#" target="_blank" class="contact-btn contact-btn-dark">
+            <a href="https://share.google/dcSKgJzEwvGI7j6Hg" target="_blank" class="contact-btn contact-btn-dark">
                 <i class="fas fa-star" aria-hidden="true"></i> Google
             </a>
+        </div>
+    </div>
+
+    <div class="rating-badge">
+        <span class="rating-star"><i class="fas fa-star" aria-hidden="true"></i></span>
+        <div>
+            <strong>4.9/5 Rating</strong>
+            <small>100+ Happy Customers</small>
         </div>
     </div>
 
@@ -2585,9 +2606,18 @@ footer {
         <label class="loc-label">MOBILE NUMBER</label>
         <input type="tel" id="qbMobile" maxlength="10" inputmode="numeric" placeholder="10-digit number">
         <button type="button" class="confirm" id="qbConfirmBtn" onclick="confirmQuickBook()">
-            <span aria-hidden="true">◉</span> &nbsp; Confirm on WhatsApp
+            <span aria-hidden="true">◉</span> &nbsp; Confirm Booking
         </button>
     </div>
+</div>
+
+<div class="footer-social">
+    <a href="https://www.instagram.com/dhyancabs?igsh=MWt2NXh2Nmx0OW8wMg==" target="_blank" rel="noopener" class="contact-btn contact-btn-dark" aria-label="Follow Dhyan Cabs on Instagram">
+        <i class="fab fa-instagram" aria-hidden="true"></i> Follow on Instagram
+    </a>
+    <a href="https://share.google/dcSKgJzEwvGI7j6Hg" target="_blank" rel="noopener" class="contact-btn contact-btn-dark" aria-label="Find Dhyan Cabs on Google">
+        <i class="fas fa-star" aria-hidden="true"></i> Rate us on Google
+    </a>
 </div>
 
 <footer>
@@ -3064,7 +3094,7 @@ if (form) {
             }
         }
 
-        // BUILD WHATSAPP MESSAGE
+        // BUILD BOOKING SUMMARY (kept for reference / future email notification)
 
         let message =
             "DHYAN CAB BOOKING\n\n" +
@@ -3087,13 +3117,9 @@ if (form) {
 
         message += "\nCustomer Mobile: " + mobile;
 
-        const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
-
-        showToast("Booking saved! Redirecting you to WhatsApp…");
+        showToast("Booking confirmed! We'll contact you shortly.");
 
         setTimeout(function() {
-
-            window.open(whatsappURL, "_blank");
 
             form.reset();
             document.querySelectorAll(".trip-pill").forEach(function(p) {
@@ -3312,13 +3338,9 @@ window.confirmQuickBook = async function() {
         }
     }
 
-    const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
-
-    showToast("Booking saved! Redirecting you to WhatsApp…");
+    showToast("Booking confirmed! We'll contact you shortly.");
 
     setTimeout(function() {
-
-        window.open(whatsappURL, "_blank");
 
         closeQuickBook();
 
