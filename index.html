@@ -1870,7 +1870,7 @@ footer {
         display: block;
     }
 
-    .phone-btn i {
+    .phone-btn span {
         margin-right: 0;
     }
 }
@@ -2033,7 +2033,7 @@ footer {
         </nav>
 
         <a class="phone-btn" href="tel:+919920019194">
-            <i class="fas fa-phone" aria-hidden="true"></i> 99200 19194
+            <span aria-hidden="true">☎</span> 99200 19194
         </a>
 
         <button class="menu" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">☰</button>
@@ -2559,10 +2559,10 @@ footer {
             <a href="https://wa.me/919920019194" target="_blank" class="contact-btn contact-btn-whatsapp">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
             </a>
-            <a href="#" target="https://www.instagram.com/dhyancabs?igsh=MWt2NXh2Nmx0OW8wMg==" class="contact-btn contact-btn-dark">
+            <a href="#" target="_blank" class="contact-btn contact-btn-dark">
                 <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
             </a>
-            <a href="#" target="https://share.google/dcSKgJzEwvGI7j6Hg" class="contact-btn contact-btn-dark">
+            <a href="#" target="_blank" class="contact-btn contact-btn-dark">
                 <i class="fas fa-star" aria-hidden="true"></i> Google
             </a>
         </div>
@@ -2572,8 +2572,8 @@ footer {
 
 </main>
 
-<a class="floating whatsapp" href="https://wa.me/919920019194" target="_blank" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-<a class="floating call" href="tel:+919920019194" aria-label="Call Dhyan Cabs"><i class="fas fa-phone" aria-hidden="true"></i></a>
+<a class="floating whatsapp" href="https://wa.me/919920019194" target="_blank" aria-label="Chat on WhatsApp">◉</a>
+<a class="floating call" href="tel:+919920019194" aria-label="Call Dhyan Cabs">☎</a>
 
 <div class="toast" id="toast"></div>
 
@@ -2646,6 +2646,14 @@ footer {
     <div class="copyright">© 2026 Dhyan Cabs. All Rights Reserved.</div>
 
 </footer>
+
+<!-- ── EMAILJS (loads before main script so emailjs.send() is ready when forms submit) ── -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init({ publicKey: "XiIRu6RiWbagNYfE8" });
+    })();
+</script>
 
 <script>
 // ========================================
@@ -3283,6 +3291,25 @@ window.confirmQuickBook = async function() {
             "Vehicle: " + name +
             "\nRound Trip Rate: ₹" + priceA + " / km" +
             "\nCustomer Mobile: " + mobile;
+    }
+
+    // ── EMAILJS NOTIFICATION (fire-and-forget; booking still proceeds if this fails) ──
+    if (window.emailjs) {
+        try {
+            await emailjs.send("service_r0coc6v", "template_n5ho2kp", {
+                booking_type: type === "route" ? "Route & Pricing Booking" : "Round Trip Booking",
+                route: type === "route" ? name : "",
+                vehicle: type === "route" ? "" : name,
+                sedan_price: type === "route" ? priceA : "",
+                suv_price: type === "route" ? priceB : "",
+                round_trip_rate: type === "route" ? "" : priceA,
+                mobile: mobile,
+                message: message,
+                received: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
+            });
+        } catch (err) {
+            console.error("EmailJS send error:", err);
+        }
     }
 
     const whatsappURL = "https://wa.me/919920019194?text=" + encodeURIComponent(message);
