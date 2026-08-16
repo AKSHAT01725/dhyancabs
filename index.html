@@ -2637,7 +2637,7 @@ footer {
             <p>Safe &amp; Reliable Cab Service Across Gujarat — Ahmedabad Based Travel Partner</p>
             <p>E-1101/1102 Reflection By Pacifica, Vaishnavdevi Circle, Ahmedabad</p>
             <a href="tel:+919920019194">+91 99200 19194</a>
-            <a href="https://wa.me/919920019194" target="https://wa.me/919920019194">Chat on WhatsApp</a>
+            <a href="https://wa.me/919920019194" target="_blank">Chat on WhatsApp</a>
         </div>
 
         <div class="footer-col">
@@ -3101,6 +3101,20 @@ if (form) {
         }
 
         message += "\nCustomer Mobile: " + mobile;
+
+        // ── EMAILJS NOTIFICATION (fire-and-forget; booking still proceeds if this fails) ──
+        if (window.emailjs) {
+            try {
+                await emailjs.send("service_r0coc6v", "template_n5ho2kp", {
+                    booking_type: "New " + trip + " Booking",
+                    mobile: mobile,
+                    message: message,
+                    received: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })
+                });
+            } catch (err) {
+                console.error("EmailJS send error:", err);
+            }
+        }
 
         showToast("Booking confirmed! We'll contact you shortly.");
 
