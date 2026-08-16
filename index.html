@@ -1935,6 +1935,17 @@ footer {
                 <button type="button" class="swap-btn" id="swapBtn" title="Swap locations" aria-label="Swap pickup and destination">⇄</button>
             </div>
 
+            <div class="date-time-grid">
+                <div class="dt-card">
+                    <label class="loc-label">CUSTOMER NAME</label>
+                    <input class="loc-input dt-input" type="text" id="bName" placeholder="Your full name" autocomplete="off" required>
+                </div>
+                <div class="dt-card">
+                    <label class="loc-label">NO. OF PASSENGERS</label>
+                    <input class="loc-input dt-input" type="number" id="bPassengers" min="1" max="52" placeholder="e.g. 4" required>
+                </div>
+            </div>
+
             <div class="date-time-grid" id="dateGrid">
                 <div class="dt-card" id="pickupDateCard">
                     <label class="loc-label">PICKUP DATE</label>
@@ -2783,6 +2794,8 @@ if (form) {
 
         const pickup = document.getElementById("bPickup").value.trim();
         const dest = document.getElementById("bDestination").value.trim();
+        const name = document.getElementById("bName").value.trim();
+        const passengers = document.getElementById("bPassengers").value.trim();
         const date = document.getElementById("bDate").value;
         const returnDate = document.getElementById("bReturnDate") ? document.getElementById("bReturnDate").value : "";
         const time = document.getElementById("bTime").value;
@@ -2791,6 +2804,16 @@ if (form) {
         const trip = selectedTrip;
 
         // VALIDATION
+
+        if (!name) {
+            showToast("Please enter your name", true);
+            return;
+        }
+
+        if (!passengers || parseInt(passengers, 10) < 1) {
+            showToast("Please enter number of passengers", true);
+            return;
+        }
 
         if (!pickup) {
             showToast(trip === "Airport" ? "Please select an airport" : "Please enter pickup city", true);
@@ -2831,6 +2854,8 @@ if (form) {
         if (window.saveBookingToFirebase) {
             try {
                 await window.saveBookingToFirebase("bookings", {
+                    name: name,
+                    passengers: passengers,
                     mobile: mobile,
                     pickup: pickup,
                     destination: dest,
@@ -2850,7 +2875,9 @@ if (form) {
 
         let message =
             "DHYAN CAB BOOKING\n\n" +
-            "Booking Type: " + trip +
+            "Customer Name: " + name +
+            "\nPassengers: " + passengers +
+            "\nBooking Type: " + trip +
             "\nFrom: " + pickup +
             "\nTo: " + dest +
             "\nPickup Date: " + date;
